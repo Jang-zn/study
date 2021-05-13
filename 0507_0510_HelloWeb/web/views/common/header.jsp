@@ -64,7 +64,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type = "button" value="내 정보 보기">
+						<input type = "button" value="내 정보 보기" onclick="fn_memberView();">
 					</td>
 					<td>
 						<input type = "button" value="로그아웃" onclick="fn_logout();">
@@ -105,5 +105,10 @@
 				location.assign("<%=request.getContextPath()%>/views/signup.jsp")
 			}
 			/* jquery에서는 location 객체 못씀 + scriptlet이랑 script랑 별개(scriptlet 먼저 로딩)라서 이벤트 주고 sendRedirect 이런거 안됨 */
+			
+			const fn_memberView = ()=>{
+				location.assign("<%=request.getContextPath()%>/memberView.do?userId=<%=loginMember!=null?loginMember.getUserId():""%>");
+				
+			}
 			
 		</script>
