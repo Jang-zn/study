@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>개인취향테스트</title>
+
+<style>
+	ul{
+		list-style:none;	
+	}
+	li{
+	}
+</style>
+</head>
+<body>
+	<h1>requestDispatcher</h1>
+	<h2>취향테스트</h2>
+	<p>데이터 입력 후 확인 누르기</p>
+	<form action="/0430-0503_02_ServletData/dispatcherTest.do" method="post">
+	<!-- action에 /넣으면 절대경로, 안넣으면 상대경로 -->
+	<ul>
+	<li>이름 : <input type="text" name="name"></li>
+	<li>나이 : <input type="number" name="age"></li>
+	<li>키 : <input type="text" name="height"></li>
+	<li>좋아하는색 : <label><input type="radio" name="color" value="cornflowerblue">콘플라워블루</label>
+		<label><input type="radio" name="color" value="royalblue">로얄블루</label>
+		<label><input type="radio" name="color" value="skyblue">스카이블루</label>
+		<label><input type="radio" name="color" value="deepblue">딥블루</label>
+		<label><input type="radio" name="color" value="lightblue">라이트블루</label>
+	</li>
+	<li>좋아하는음식 : 
+	<label><input type="checkbox" name="food" value="시리얼">시리얼</label>
+	<label><input type="checkbox" name="food" value="밥">밥</label>
+	<label><input type="checkbox" name="food" value="김치">김치</label>
+	<label><input type="checkbox" name="food" value="라면">라면</label>
+	<label><input type="checkbox" name="food" value="김밥">김밥</label>
+	</li>
+	<li>좋아하는동물 : 
+	<select name = "animal">
+		<option value = "고양이">고양이</option>
+		<option value = "칡">칡</option>
+		<option value = "호랑이">호랑이</option>
+		<option value = "사자">사자</option>
+		<option value = "뱀">뱀</option>
+	</select>
+	</li>
+	</ul>
+	<input type="submit" value="확인">
+	<input type="reset" value="reset">
+	</form>
+</body>
+</html>

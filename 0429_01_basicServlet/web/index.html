@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>first server page</title>
+	<style>
+		table *, table {
+			border : 1px solid black;
+		}
+		table {
+			width : 200px;
+			height : 200px;
+		}
+	</style>
+</head>
+<body>
+	<h1>first main page</h1>
+	<p>Welcome to Web Application</p>
+	<h2>서블릿 만들기</h2>
+	<p> 서블릿을 생성해서 서버에 기능 추가</p>
+	<p> 일반 클래스 생성 후 HttpServlet class 상속시켜주면 됨</p>
+	<p> 서버에서 생성된 servlet이 작동하려면 서버에 servlet 등록하고 실행주소 mapping 해줘야 됨</p>
+	<p> 1. web.xml에 등록 / 2. @ annotation 이용하는 방법 -> @WebServlet()</p>
+	<ul>
+	<li><a href="test"> first servlet</a></li> 
+	<li><a href="anno"> Annotation으로 servlet 연결</a></li>
+	<li><a href="life.do"> 서블릿 생명주기</a></li>
+	<li><a href="auto"> 이클립스 서블릿 양식으로 생성</a></li>
+	<!-- 서블릿 맵핑된 주소를 줘야됨 미리 정해놓고 나중에 연결해도 됨 중복되면 작동 안함
+	그동안 MVC한게 다 이걸 위한거였음. -> 컨트롤러 역할을 하는게 서블릿이다 
+	href에 그냥 단어 하나 넣으면 주소 뒤에 /단어 해서 붙여버리고 요청한다.-->
+	</ul>
+	<table>
+	<tr><td>1</td><td>2</td><td>3</td></tr>
+	<tr><td>4</td><td>5</td><td>6</td></tr>
+	<tr><td>7</td><td>8</td><td>9</td></tr>
+	</table>
+	
+	
+</body>
+</html>

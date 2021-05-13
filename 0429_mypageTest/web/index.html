@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한강뷰 or 한강물</title>
+    <style>
+        /** {
+            border: 1px black solid;
+        }*/
+        body{
+            background-color: rgb(243, 243, 243);
+        }
+        #menuline {
+            height: 70px;
+            display: flex;
+            cursor: pointer;
+            background-color: rgb(187, 238, 183);
+            flex-direction: row;
+            position: relative;
+            z-index: 100;
+        }
+
+        #menuline>.parmenu:hover {
+            background-color: rgb(64, 97, 61);
+            color: white;
+        }
+
+        #menuline>.parmenu:hover .submenu {
+            display: block;
+        }
+
+        #menuline>.parmenu {
+            text-align: center;
+            letter-spacing: 5px;
+            font-weight: bold;
+            font-size: 15px;
+            flex-grow: 3;
+            padding-top: 20px;
+            border: 2px groove grey;
+        }
+
+        #menuline>.logo {
+            flex-grow: 0;
+            border: 2px groove grey;
+        }
+
+        .submenu {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .submenu>div {
+            z-index: 200;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 12px 16px;
+            background-color: rgb(113, 151, 111);
+            border:2px groove rgb(219, 245, 219);
+            z-index: 200;
+        }
+
+        .submenu a:hover {
+            text-decoration: underline;
+        }
+
+        #banner {
+            display: flex;
+            height: 100px;
+        }
+
+        #banner>div>img {
+            height: 99px;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+            border: 2px gray groove;
+        }
+
+        #yanudo {
+            width: 450px;
+            margin-left: 10px;
+        }
+
+        #pw,
+        #id {
+            width: 117px;
+            margin-right: 20px;
+            z-index: 10;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .loginbox {
+            padding: 15px;
+            display: inline-block;
+            z-index: 10;
+            position: relative;
+            border: 2px groove grey;
+        }
+        .loginbox>form {
+            border: 2px groove grey;
+        }
+
+        #box {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            border: 2px groove grey;
+            height: auto;
+        }
+
+        .boardbox {
+            width: 600px;
+            height: auto;
+            margin: 10px;
+            border: 2px gray groove;
+        }
+
+        .boardsub {
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .boardsub:hover {
+            text-decoration: underline;
+            color: rgb(61, 61, 61);
+        }
+
+        .list {
+            margin: 5px;
+            display: block;
+            border-bottom: 2px dotted grey;
+            cursor:pointer;
+        }
+        .list>.img {
+            height: 80px;
+            width: 80px;
+            display: inline-block;
+            border:1px gray solid;
+            overflow:hidden;
+        }
+        .list>.img:hover{
+            transform:scale(3);
+        }
+        .list>.sub {
+            display: inline-block;
+            width: 400px;
+            vertical-align: bottom;
+        }
+        .listbox>.list:hover{
+            background-color: rgb(219, 250, 193);
+            font-weight:bold;
+        }
+        .listbox{
+            border-top: darkolivegreen 2px groove;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="menuline">
+        <div class="logo"><img
+                src="data:image/png;base64,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"
+                height="66px">
+        </div>
+        <div class="parmenu">공지
+            <div class="submenu">
+                <a>공지사항</a>
+                <a>News</a>
+            </div>
+        </div>
+        <div class="parmenu">거래소/차트</div>
+        <div class="parmenu">게시판
+            <div class="submenu">
+                <a>자유게시판</a>
+                <a>코인정보</a>
+            </div>
+        </div>
+        <div class="parmenu">갤러리
+            <div class="submenu">
+                <a>손익인증</a>
+                <a>자유갤러리</a>
+            </div>
+        </div>
+    </div>
+    <div id="banner">
+        <div class="loginbox">
+            <form method=post>
+                <label for="id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID : </label><input class="login"
+                    type="text" id="id" name="id" placeholder="  ID"><br>
+                <label for="pw"> Password : </label>
+                <input class="login" type="password" name="pw" id="pw" placeholder="  비밀번호"><br>
+                <input type="submit" value="login" width="200px">
+            </form>
+        </div>
+        <div class="banner"><img id="yanudo" src="yanudo.png">
+            <img id="bitmex" src="bitmex.png">
+            <img id="sagi"
+                src="https://post-phinf.pstatic.net/MjAxODAzMTlfMTk5/MDAxNTIxNDQyNDQ3MDQ4.MrtS2fYVg3dBpXyWOU0yKCe-qeQdV_QuUKa-8l8bmTYg.3WmK-E8N5DAFSX4AZutfsZsuCFpugrvLcxSmFPnwbhkg.PNG/%EB%84%A4%EC%9D%B4%EB%B2%84%ED%8F%AC%EC%8A%A4%ED%8A%B8%EB%B0%B0%EB%84%88_180314_3.png?type=w1200">
+        </div>
+    </div>
+    <div id="coin">
+        <nav>
+            <ul>
+                <li>BTC</li>
+                <li>ETH</li>
+                <li>LTC</li>
+                <li>XRP</li>
+                <li>BTT</li>
+                <li>EOS</li>
+                <li>ADA</li>
+            </ul>
+        </nav>
+    </div>
+    <div id=box>
+        <div class="boardbox"><a class="boardsub">공지사항</a>
+            <div class="listbox">
+                <div class="list">시세표에 칠리즈(CHZ), 휴먼스케이프(HUM)가 추가되었습니다.</div>
+                <div class="list">시세표에 5종의 코인이 추가되었습니다.</div>
+                <div class="list">모바일에서 다크모드 기능이 추가되었습니다.</div>
+                <div class="list">서버증설이 완료되었습니다</div>
+                <div class="list">클레이튼(KLAY) 포럼이 신설되었습니다.</div>
+                <div class="list">시세표에 오브스(ORBS)가 추가되었습니다.</div>
+                <div class="list">서버 부하 문제 해결 및 인기검색어 재도입</div>
+                <div class="list">시세표에 보라(BORA), 픽셀(PXL)이 추가되었습니다.</div>
+            </div>
+        </div>
+        <div class="boardbox"><a class="boardsub">News</a>
+            <div class="listbox">
+                <div class="list">4월 2일 코인판 뉴스 요약</div>
+                <div class="list">4월 1일 코인판 뉴스 요약</div>
+                <div class="list">3월 31일 코인판 뉴스 요약</div>
+                <div class="list">3월 29일 코인판 뉴스 요약</div>
+                <div class="list">3월 26일 코인판 뉴스 요약</div>
+                <div class="list">3월 25일 코인판 뉴스 요약</div>
+                <div class="list">3월 24일 코인판 뉴스 요약</div>
+                <div class="list">3월 23일 코인판 뉴스 요약</div>
+            </div>
+        </div>
+        <div class="boardbox"><a class="boardsub">자유게시판</a>
+            <div class="listbox">
+                <div class="list">김프가 거슬린다면 봐라</div>
+                <div class="list">지금 현 상황에서 가장 안전한 투자 방법</div>
+                <div class="list">슨트 241 몰빵</div>
+                <div class="list">비토 상승률 미친거 아니냐</div>
+                <div class="list">400k 찍을대까지 이 광기는 끝나지 않는다</div>
+                <div class="list">트론 500원은 무조건 가고 지폐갈것</div>
+                <div class="list">떡락충들 손꾸락빨고 있죠? ㅋㅋㅋ</div>
+                <div class="list">차트 넘모 이쁘다</div>
+            </div>
+        </div>
+        <div class="boardbox"><a class="boardsub">코인정보</a>
+            <div class="listbox">
+                <div class="list">디테라렌딩에서 코인대출기업 엔도르 투자</div>
+                <div class="list">[공시] 맵프로토콜 MXC와 협약 체결</div>
+                <div class="list">이오스네이션 파운딩 멤버로 초대</div>
+                <div class="list">토로커스 유니온페이 실화였나?</div>
+                <div class="list">코인베이스 상장</div>
+                <div class="list">비트코인 풍선효과? 이더리움 보유자 수 사상 최고치</div>
+                <div class="list">비트코인 채굴자들 안팔고 축적중</div>
+                <div class="list">트론(TRX) 주간 보고서</div>
+            </div>
+        </div>
+        <div class="boardbox" height="auto"><a class="boardsub">자유갤러리</a>
+            <div class="listbox">
+                <div class="list">
+                    <div class="img"></div>
+                    <div class="sub">게시글1</div>
+                </div>
+                <div class="list">
+                    <div class="img"></div>
+                    <div class="sub">게시글2</div>
+                </div>
+                <div class="list">
+                    <div class="img"></div>
+                    <div class="sub">게시글3</div>
+                </div>
+                <div class="list">
+                    <div class="img"></div>
+                    <div class="sub">게시글4</div>
+                </div>
+            </div>
+        </div>
+        <div class="boardbox"><a class="boardsub">손익인증</a>
+            <div class="listbox">
+                <div class="list">
+                    <div class="img"><img src="bujok.png " width="80px" height="80px"></div>
+                    <div class="sub">부족해..부족해..</div>
+                </div>
+                <div class="list">
+                    <div class="img"><img src="jasal.jpg" width="80px" height="80px"></div>
+                    <div class="sub">매도는 예술이고 난 예술가가 아니다..</div>
+                </div>
+                <div class="list">
+                    <div class="img"><img src="giman.png" width="80px" height="80px"></div>
+                    <div class="sub">돌격! 코인 입성 12일차 현황 보고드립니다.</div>
+                </div>
+                <div class="list">
+                    <div class="img"><img src="wal.jpg" width="80px" height="80px"></div>
+                    <div class="sub">비캐 존버 8일차 목표가 800만원</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
