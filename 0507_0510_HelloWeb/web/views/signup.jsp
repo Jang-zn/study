@@ -75,11 +75,11 @@
 			<tr>
 				<th>취미 </th>
 				<td>
-					<input type="checkbox" name="hobby" id="hobby0"><label for="hobby0" value="운동">운동</label>
-					<input type="checkbox" name="hobby" id="hobby1" ><label for="hobby1" value="등산">등산</label>
-					<input type="checkbox" name="hobby" id="hobby2" ><label for="hobby2" value="독서">독서</label><br />
-					<input type="checkbox" name="hobby" id="hobby3"><label for="hobby3" value="게임">게임</label>
-					<input type="checkbox" name="hobby" id="hobby4" ><label for="hobby4" value="여행">여행</label><br />
+					<input type="checkbox" name="hobby" id="hobby0" value="운동"><label for="hobby0" >운동</label>
+					<input type="checkbox" name="hobby" id="hobby1" value="등산"><label for="hobby1" >등산</label>
+					<input type="checkbox" name="hobby" id="hobby2" value="독서"><label for="hobby2" >독서</label><br />
+					<input type="checkbox" name="hobby" id="hobby3" value="게임"><label for="hobby3" >게임</label>
+					<input type="checkbox" name="hobby" id="hobby4" value="여행"><label for="hobby4" >여행</label><br />
 				</td>
 			</tr>
 		</table>

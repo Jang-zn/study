@@ -17,7 +17,7 @@ public class MemberDao {
 		Properties p = new Properties();
 			try {
 				String path = MemberDao.class.getResource("/SQL/sql.properties").getPath();
-				System.out.println("path : "+path);
+				
 				p.load(new FileReader(path));
 				pstmt = conn.prepareStatement(p.getProperty("selectLoginMember"));
 				pstmt.setString(1, id);
@@ -74,6 +74,37 @@ public class MemberDao {
 		
 	}
 	
+	public int updateMember(Member m, Connection conn) {
+		PreparedStatement pstmt = null;
+		Properties p = new Properties();
+		int result=0;
+		try {
+			String path = MemberDao.class.getResource("/SQL/sql.properties").getPath();
+			p.load(new FileReader(path));
+			pstmt = conn.prepareStatement(p.getProperty("updateMember"));
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getPassword());
+			pstmt.setString(3, m.getUserName());
+			pstmt.setString(4, m.getGender());
+			pstmt.setInt(5, m.getAge());
+			pstmt.setString(6, m.getEmail());
+			pstmt.setString(7, m.getPhone());
+			pstmt.setString(8, m.getAddress());
+			pstmt.setString(9, m.getHobby());
+			pstmt.setString(10, m.getUserId());
+			result=pstmt.executeUpdate();
+			//excuteUpdate에서 멈춰버리면 DB접근이 차단된거니까 db commit / developer 종료 / 서버 restart 후 다시 해볼것
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);	
+		}
+		return result;
+		
+	}
+	
+	
+	
 	public int deleteMember(String id, Connection conn) {
 		PreparedStatement pstmt = null;
 		Properties p = new Properties();
@@ -126,7 +157,6 @@ public class MemberDao {
 		Properties p = new Properties();
 			try {
 				String path = MemberDao.class.getResource("/SQL/sql.properties").getPath();
-				System.out.println("path : "+path);
 				p.load(new FileReader(path));
 				pstmt = conn.prepareStatement(p.getProperty("duplicate"));
 				pstmt.setString(1, id);
