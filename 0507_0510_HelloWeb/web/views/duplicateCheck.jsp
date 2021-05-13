@@ -21,10 +21,10 @@
 			[<span><%=request.getParameter("userId") %></span>]는 사용가능합니다.	
 			<br><br>
 			<button type="button" onclick="pageclose();">닫기</button>
-			<form method="post" name="useOK" onsubmit="useOK_HelloMVC();" target="parentPage" action="<%=request.getContextPath() %>/views/signup.jsp">
-				<input type="hidden" name="checkedId" id="checkedId" value="<%=request.getParameter("userId") %>">
+			<!-- <form method="post" name="useOK" onsubmit="useOK_HelloMVC();" target="parentPage" action="<%=request.getContextPath() %>/views/signup.jsp">
+				<input type="hidden" name="checkedId" id="checkedId" value="<%=//request.getParameter("userId") %>">
 				<input type="hidden" name="checkOK" value="true">
-			</form>
+			</form> -->
 		<%}else{ %>
 			[<span id="duplicated"><%=request.getParameter("userId") %></span>]는 사용중입니다.
 			<br><br>
@@ -37,11 +37,10 @@
 	</div>
 	<script>
 		const pageclose=()=>{
-			window.opener.name="parentPage";
-			useOK.submit();
-			/*console.log(window.opener.document.getElementById("#userId"));*/
-			/*  window.opener.document.getElementById("#userId_").value = "%=request.getParameter("userId")%";*/
-			/* 위 방식으로 하는것도 연구해본다.  */
+			/*window.opener.name="parentPage";*/
+			/*useOK.submit();*/
+			opener.document.getElementById("userId_").value = "<%=request.getParameter("userId")%>";
+			/* submit 없이 opener에서 접근해서 바꿔줘도 된다.  */
 			self.close();
 		}
 		const fn_nullcheck=()=>{

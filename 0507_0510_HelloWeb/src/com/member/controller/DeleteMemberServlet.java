@@ -31,13 +31,20 @@ public class DeleteMemberServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userId = ((Member)session.getAttribute("login")).getUserId();
 		int result = new MemberService().deleteMember(userId);
+		String msg = "";
+		String location = "";
 		if(result>0) {
-			String msg = "정상적으로 탈퇴되었습니다.";
-			String location = "/";
-			request.setAttribute("msg", msg);
-			request.setAttribute("loc", location);
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			msg = "정상적으로 탈퇴되었습니다.";
+			location = "/logout";
+			
+		}else {
+			msg = "탈퇴에 실패했습니다 다시 시도해주세요";
+			location = "/views/memberView.do?userId="+userId;
+
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", location);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 		
 	}

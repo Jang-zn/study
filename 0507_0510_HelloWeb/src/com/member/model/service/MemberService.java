@@ -45,6 +45,19 @@ public class MemberService {
 		return result;	
 	}
 	
+	public int updateMember(Member m) {
+		Connection conn = getConnection();
+		int result = dao.updateMember(m, conn);
+		if(result>0) {  // 사실 insert한개라서 transaction처리 할필요는 없음 근데 이렇게 한단것만 알아둔다.
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;	
+	}
+	
+	
 	
 	public boolean duplicateCheck(String id) {
 		Connection conn = getConnection();
