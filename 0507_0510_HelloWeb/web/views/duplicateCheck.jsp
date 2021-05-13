@@ -9,14 +9,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src = "<%=request.getContextPath() %>/src/js/jquery-3.6.0.min.js"></script>
+<style>
+	div#checkId-container{text-align:center;paddin-top:50px;}
+	span#duplicated{color:red;font-weight:bold;}
+	
+</style>
 </head>
 <body>
 <div id="checkId-container">
-		<% if(result==false){ %>
+		<% if(!result){ %>
 			[<span><%=request.getParameter("userId") %></span>]는 사용가능합니다.	
 			<br><br>
 			<button type="button" onclick="pageclose();">닫기</button>
-			<form name="useOK" onsubmit="useOK_HelloMVC();" target="parentPage" action="<%=request.getContextPath() %>/views/signup.jsp">
+			<form method="post" name="useOK" onsubmit="useOK_HelloMVC();" target="parentPage" action="<%=request.getContextPath() %>/views/signup.jsp">
 				<input type="hidden" name="checkedId" id="checkedId" value="<%=request.getParameter("userId") %>">
 				<input type="hidden" name="checkOK" value="true">
 			</form>
@@ -34,6 +39,9 @@
 		const pageclose=()=>{
 			window.opener.name="parentPage";
 			useOK.submit();
+			/*console.log(window.opener.document.getElementById("#userId"));*/
+			/*  window.opener.document.getElementById("#userId_").value = "%=request.getParameter("userId")%";*/
+			/* 위 방식으로 하는것도 연구해본다.  */
 			self.close();
 		}
 		const fn_nullcheck=()=>{

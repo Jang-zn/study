@@ -68,7 +68,7 @@
 				<td>
 					<input type="radio" name="gender" id="gender0" value="M"  >
 					<label for="gender0">남</label>
-					<input type="radio" name="gender" id="gender1" value="M">
+					<input type="radio" name="gender" id="gender1" value="F">
 					<label for="gender1">여</label>
 				</td>
 			</tr>
@@ -117,7 +117,7 @@
 				return true;
 	}
     const fn_duplicate=()=>{
-    	const status = "width:300px, height:200px, left : 500px, top : 100px;";
+    	const status = "width:300px, height:200px, left:500px, top:100px;";
     	const title = "duplicateId";
     	const url = "<%= request.getContextPath()%>/checkDuplicate";
     	if($("#userId_").val()!=""){

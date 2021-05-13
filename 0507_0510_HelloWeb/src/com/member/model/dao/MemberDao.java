@@ -29,6 +29,7 @@ public class MemberDao {
 					m.setPassword(rs.getString("PASSWORD"));
 					m.setUserName(rs.getString("USERNAME"));
 					m.setAge(rs.getInt("AGE"));
+					m.setGender(rs.getString("GENDER"));
 					m.setEmail(rs.getString("EMAIL"));
 					m.setPhone(rs.getString("PHONE"));
 					m.setAddress(rs.getString("ADDRESS"));
@@ -73,6 +74,27 @@ public class MemberDao {
 		
 	}
 	
+	public int deleteMember(String id, Connection conn) {
+		PreparedStatement pstmt = null;
+		Properties p = new Properties();
+		int result=0;
+		try {
+			String path = MemberDao.class.getResource("/SQL/sql.properties").getPath();
+			p.load(new FileReader(path));
+			pstmt = conn.prepareStatement(p.getProperty("deleteMember"));
+			pstmt.setString(1, id);
+			result=pstmt.executeUpdate();
+			//excuteUpdate에서 멈춰버리면 DB접근이 차단된거니까 db commit / developer 종료 / 서버 restart 후 다시 해볼것
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);	
+		}
+		return result;
+		
+	}
+	
+	
 	public boolean duplicateCheck(String id,Connection conn) {
 		boolean yn=false;
 		PreparedStatement pstmt = null;
@@ -96,4 +118,38 @@ public class MemberDao {
 		return yn;
 	}
 	
+	
+	public Member selectMemberId(String id, Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member m = null;
+		Properties p = new Properties();
+			try {
+				String path = MemberDao.class.getResource("/SQL/sql.properties").getPath();
+				System.out.println("path : "+path);
+				p.load(new FileReader(path));
+				pstmt = conn.prepareStatement(p.getProperty("duplicate"));
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					m=new Member();
+					m.setUserId(rs.getString("USERID"));
+					m.setPassword(rs.getString("PASSWORD"));
+					m.setUserName(rs.getString("USERNAME"));
+					m.setAge(rs.getInt("AGE"));
+					m.setGender(rs.getString("GENDER"));
+					m.setEmail(rs.getString("EMAIL"));
+					m.setPhone(rs.getString("PHONE"));
+					m.setAddress(rs.getString("ADDRESS"));
+					m.setHobby(rs.getString("HOBBY"));
+					m.setEnrollDate(rs.getDate("ENROLLDATE"));
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			close(rs);
+			close(pstmt);
+			
+			return m;
+	}
 }
