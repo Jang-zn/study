@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>클라이언트 전송 방식에 따른 Servlet Method</h2>
+	<fieldset>
+		<legend>get 전송</legend>
+		<form action="getlogin" method="get">
+		&nbspid : <input type="text" name="userId"><br>
+		pw : <input type="text" name="pw"><br>
+		<input type="submit" value="login">
+		</form>
+	</fieldset>
+	<fieldset>
+		<legend>post 전송</legend>
+		<form action="getlogin" method="post">
+		&nbspid : <input type="text" name="userId"><br>
+		pw : <input type="text" name="pw"><br>
+		<input type="submit" value="login">
+		</form>
+	</fieldset>
+	<a href="getlogin?userId=zn2309&pw=zn2309">zn2309</a>
+	
+	<h2>parameter 처리하기</h2>
+	<h3><a href="views/testPerson.html">개인취향 테스트</a></h3>
+	<h3><a href="views/testPerson2.html">개인취향 테스트 getRequestDispatcher</a></h3>
+	<h3><a href="views/testPerson3.html">개인취향 테스트 sendRedirect</a></h3>
+	<h3><a href="share.do">데이터 전달 객체 확인</a></h3>
+	
+	<h2>서블릿 실행시 필요한 값 넣어주기</h2>
+	<!-- 주로 설정값(주소나 뭐..)같은거 처음에 넣어주고 갖다쓰고 이럼 -->
+	<h3><a href="initparam.do">값넣기</h3>
+</body>
+</html>

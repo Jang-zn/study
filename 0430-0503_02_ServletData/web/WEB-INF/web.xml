@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>0430-0503_02_ServletData</display-name>
+ <!--  <context-param>
+  	<param-name>email</param-name>
+  	<param-value>context@naver.com</param-value>
+  </context-param>
+  
+  <servlet>
+  	<servlet-name>initparam</servlet-name>
+  	<servlet-class>com.dataservlet.controller.InitParamServlet</servlet-class>
+  	<init-param>
+  		<param-name>email</param-name>
+  		<param-value>11111@naver.com</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>initparam</servlet-name>
+  	<url-pattern>/initparam.do</url-pattern>
+  </servlet-mapping> -->
+  
+  
+  
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

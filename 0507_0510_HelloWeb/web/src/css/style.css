@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body{ font-family : "휴먼모음T";}
+div, section, header, aside, footer{padding:10px;}
+
+div#container{
+	background-color:skyblue;
+	width:960px;
+	margin:0px;  /* container 계열은 margin 0줘서 레이아웃 잡기 편하게 하는게 국룰 */
+}
+
+header{
+	background-color:#00BCD4;
+	height:130px;
+	position:relative;
+	padding : 10px 0 0 0 ;
+	
+}
+
+header h1{
+	margin-left:10px;
+}
+
+section#content{
+	background-color:#F5F5F5;
+	float : left;
+	width:940px;
+	min-height : 500px;
+	}
+	
+footer{
+	background-color:#00BCD4;
+	clear:both;
+	height:75px;
+	text-align:center;
+	padding-top:40px;
+
+}
+section#enroll-container {text-align:center;}
+section#enroll-container input{margin:3px;}
+section#enroll-container table{margin:0 auto;}
+section#enroll-container table th {padding:0 10px; text-align:right;}
+section#enroll-container table td {padding:0 10px; text-align:left;}
