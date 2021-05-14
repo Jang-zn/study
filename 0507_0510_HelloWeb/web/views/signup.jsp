@@ -11,7 +11,7 @@
 %>
 <section id=enroll-container>
         <h2>회원 가입 정보 입력</h2>
-        <form action="<%=request.getContextPath()%>/signup" method="post" onsubmit="return fn_invalidate2();" >
+        <form action="<%=request.getContextPath()%>/signupEnd" method="post" onsubmit="return fn_invalidate2();" >
         <table>
 			<tr>
 				<th>아이디</th>

@@ -1,6 +1,7 @@
 package com.member.controller;
 
 import java.io.*;
+import static com.common.AESEncrypt.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -32,8 +33,17 @@ public class MemberUpdateServlet extends HttpServlet {
 			/* m.setPassword(request.getParameter("password")); */
 			m.setUserName(request.getParameter("userName"));
 			m.setAge(Integer.parseInt(request.getParameter("age")));
-			m.setEmail(request.getParameter("email"));
-			m.setPhone(request.getParameter("phone"));
+			try {
+				m.setEmail(encrypt(request.getParameter("email")));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			try {
+				m.setPhone(encrypt(request.getParameter("phone")));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			m.setAddress(request.getParameter("address"));
 			m.setGender(request.getParameter("gender"));
 			m.setHobby(String.join(",",request.getParameterValues("hobby")));
