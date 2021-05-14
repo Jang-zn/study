@@ -35,11 +35,11 @@ public class LoginCheckFilter implements Filter {
 		// TODO Auto-generated method stub
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		if(session.getAttribute("login")==null) {
-			request.setAttribute("msg","잘못된 경로로 접근했습니다.");
+			request.setAttribute("msg","잘못된 경로로 접근했습니다. err:null");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else if(!((Member)session.getAttribute("login")).getUserId().equals(request.getParameter("userId"))){
-			request.setAttribute("msg","잘못된 경로로 접근했습니다.");
+			request.setAttribute("msg","잘못된 경로로 접근했습니다. err:ID");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {

@@ -57,6 +57,19 @@ public class MemberService {
 		return result;	
 	}
 	
+	public int updatePassword(String id, String pw_new) {
+		Connection conn = getConnection();
+		int result = dao.updatePassword(id, pw_new, conn);
+		if(result>0) { 
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;	
+	}
+	
+	
 	
 	
 	public boolean duplicateCheck(String id) {

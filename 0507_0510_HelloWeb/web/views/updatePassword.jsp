@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Update password</title>
+<script src = "<%=request.getContextPath() %>/src/js/jquery-3.6.0.min.js"></script>
+<style>
+    div#updatePassword-container{
+        background:red;
+    }
+    div#updatePassword-container table {
+        margin:0 auto;
+        border-spacing: 20px;
+    }
+    div#updatePassword-container table tr:last-of-type td {
+        text-align:center;
+    }
+    </style>
+</head>
+<body>
+    
+
+    <div id="updatePassword-container">
+		<form name="updatePwdFrm" action="<%=request.getContextPath()%>/updatePasswordEnd" method="post" >
+			<table>
+				<tr>
+					<th>현재 비밀번호</th>
+					<td><input type="password" name="password" id="password" required></td>
+				</tr>
+				<tr>
+					<th>변경할 비밀번호</th>
+					<td>
+						<input type="password" name="password_new" id="password_new" required>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호 확인</th>
+					<td>	
+						<input type="password" id="password_chk" required><br>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="변경" />&nbsp;
+						<input type="button" value="닫기" onclick="pageClose();">						
+					</td>
+				</tr>
+				<input type="hidden" value="<%=request.getParameter("userId") %>" name="userId">
+			</table>
+		</form>
+		<script>
+			$("#password_chk").blur(e=>{
+				if($(e.target).val().trim()!=$("#password_new").val().trim()){
+					$(e.target).val("")
+					alert("변경할 비밀번호가 일치하지 않습니다.");
+					$("#password_new").focus();
+				}else if($("#password_new").val().trim().length<4){
+					$(e.target).val("")
+					alert("비밀번호를 4자리 이상 입력하세요");
+					$("#password_new").focus();
+				}
+			})
+			const pageClose=()=>{
+				self.close();
+			}
+			
+			</script>
+	</div>
+</body>
+</html>

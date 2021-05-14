@@ -29,7 +29,7 @@ public class MemberUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	   	Member m = new Member();
 			m.setUserId(request.getParameter("userId"));
-			m.setPassword(request.getParameter("password"));
+			/* m.setPassword(request.getParameter("password")); */
 			m.setUserName(request.getParameter("userName"));
 			m.setAge(Integer.parseInt(request.getParameter("age")));
 			m.setEmail(request.getParameter("email"));

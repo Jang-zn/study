@@ -21,10 +21,7 @@
 			[<span><%=request.getParameter("userId") %></span>]는 사용가능합니다.	
 			<br><br>
 			<button type="button" onclick="pageclose();">닫기</button>
-			<!-- <form method="post" name="useOK" onsubmit="useOK_HelloMVC();" target="parentPage" action="<%=request.getContextPath() %>/views/signup.jsp">
-				<input type="hidden" name="checkedId" id="checkedId" value="<%=//request.getParameter("userId") %>">
-				<input type="hidden" name="checkOK" value="true">
-			</form> -->
+			
 		<%}else{ %>
 			[<span id="duplicated"><%=request.getParameter("userId") %></span>]는 사용중입니다.
 			<br><br>

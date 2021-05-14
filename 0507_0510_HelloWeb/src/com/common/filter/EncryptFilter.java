@@ -9,7 +9,8 @@ import javax.servlet.http.*;
 /**
  * Servlet Filter implementation class EncryptFilter
  */
-@WebFilter("/login")
+@WebFilter(urlPatterns={"/login","/signup","/updatePassword", "/updatePasswordEnd"})
+//Servlet에서 name = "" 적용해주고, 여기서 servletNames={""} 주면 name값으로도 적용 가능
 public class EncryptFilter implements Filter {
 
     /**
