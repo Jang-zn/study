@@ -21,6 +21,7 @@
 <title>HelloMVC</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/src/css/style.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/src/css/header.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/src/css/memberList.css">
 
 <script src = "<%=request.getContextPath() %>/src/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -75,9 +76,12 @@
 		</div>
 		<nav>
 			<ul class="main-nav">
-				<li class="home"><a href="">Home</a></li>
+				<li class="home"><a href="<%=request.getContextPath()%>">Home</a></li>
 				<li id="notice"><a href="">공지사항</a></li>
 				<li id="board"><a href="">게시판</a></li>
+				<%if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
+					<li id="memberManage"><a href="<%=request.getContextPath()%>/admin/memberList">회원관리</a></li>
+				<%} %>
 			</ul>
 		</nav>
 		</header>

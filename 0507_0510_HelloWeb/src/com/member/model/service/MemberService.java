@@ -3,6 +3,7 @@ package com.member.model.service;
 import static com.common.JdbcTemplate.*;
 
 import java.sql.*;
+import java.util.*;
 
 import com.member.model.dao.*;
 import com.member.model.vo.*;
@@ -20,6 +21,7 @@ public class MemberService {
 		close(conn);
 		return m;
 	}
+	
 	
 	public int memberSignup(Member m) {
 		Connection conn = getConnection();

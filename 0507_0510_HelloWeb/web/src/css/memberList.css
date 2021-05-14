@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+	div#search-container {
+		margin:0 0 10px 0; padding:3px; 
+    	background-color: rgba(0, 188, 212, 0.3);
+    }
+	div#search-userId{
+		display:inline-block;
+	}
+    div#search-userName{
+    	display:none;
+    }
+    div#search-gender{
+    	display:none;
+    }
+    div#numPerpage-container{
+    	float:right;
+    }
+    form#numperPageFrm{
+    	display:inline;
+    }
