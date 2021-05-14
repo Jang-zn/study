@@ -117,7 +117,7 @@
 				return true;
 	}
     const fn_duplicate=()=>{
-    	const status = "width:300px, height:200px, left:500px, top:100px;";
+    	const status = "width=300px, height=200px, left=500px, top=100px;";
     	const title = "duplicateId";
     	const url = "<%= request.getContextPath()%>/checkDuplicate";
     	if($("#userId_").val()!=""){

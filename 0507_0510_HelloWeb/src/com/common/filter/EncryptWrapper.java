@@ -21,6 +21,10 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 			System.out.println(super.getParameter(name));
 			value = getSHA512(super.getParameter(name));
 			System.out.println(value);
+		}else if(name.equals("password_new")) {
+			System.out.println(""+super.getParameter(name));
+			value = getSHA512(super.getParameter(name));
+			System.out.println(value);
 		}else {
 			value = super.getParameter(name);
 		}

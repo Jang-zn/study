@@ -28,7 +28,7 @@
 						<!-- disable 처리하면 나중에 데이터 못넘겨서 안됨 readonly 사용 -->
 					</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th>패스워드</th>
 					<td>
 						<input type="password" name="password" id="password_memberView" required>
@@ -39,7 +39,7 @@
 					<td>	
 						<input type="password" id="password_2" required><br>
 					</td>
-				</tr>  
+				</tr>   -->
 				<tr>
 					<th>이름</th>
 					<td>	
@@ -100,10 +100,23 @@
 				</tr>
 			</table>
 			<input type="button" value="정보수정" onclick="fn_infoUpdate();">
+			<input type="button" value="비밀번호변경" onclick="fn_passUpdate();">
 			<input type="button" value="탈퇴" onclick="fn_deleteMember();">
 		</form>
 	</section>
 	<script>
+		const fn_passUpdate=()=>{
+			const status = "width=400px, height=210px left=500px top=200px";
+	    	const title = "Update password";
+	    	const url = "<%= request.getContextPath()%>/member/updatePassword?userId=<%=m.getUserId()%>";
+	    	<%System.out.println("userid "+m.getUserId());%>
+	       	open("",title,status);
+	        memberFrm.target=title;
+	        	/* target으로 지정된 title을 가진 새 창으로 form이 전송됨 */
+	        memberFrm.action=url;
+	        memberFrm.submit();
+		}
+	
 		const fn_deleteMember=()=>{
 			let yn = confirm("탈퇴하시겠습니까?");
 			if(yn){
@@ -116,6 +129,8 @@
 				alert("패스워드를 입력하세요");
 				$("#password_memberView").focus();
 			}else{
+				memberFrm.action=url;
+		        duplicateFrm.submit();
 				memberFrm.submit();
 			}
 			/* updateFrm.attr("action","%request.getContextPath()%/memberUpdate.do")) 같이 메소드에서 속성으로 action을 주면*/
