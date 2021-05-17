@@ -95,6 +95,30 @@ public class NoticeDao {
 			close(pstmt);
 			return n;
 		}
-				
 	}
+	public int noticeWrite(Connection conn, Notice n) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Properties p = new Properties();
+		try {
+			String path = NoticeDao.class.getResource("/SQL/notice_sql.properties").getPath();
+			p.load(new FileReader(path));
+			pstmt = conn.prepareStatement(p.getProperty("noticeWrite"));
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeWriter());
+			pstmt.setString(3, n.getNoticeContent());
+			/////////////////////////////////////////////////////////////////////////////////////////////
+			n.setFilepath("");
+			/////////////////////////////////////////////////////////////////////////////////////////////
+			pstmt.setString(4, n.getFilepath());
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			return result;
+		}
+	}
+	
+	
 }

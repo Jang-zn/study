@@ -11,7 +11,7 @@ import com.member.model.vo.*;
 /**
  * Servlet Filter implementation class LoginCheckFilter
  */
-@WebFilter(urlPatterns = {"/admin/*"})
+@WebFilter(urlPatterns = {"/admin/*", "/notice/write", "/notice/writeEnd"})
 public class AdminCheckFilter implements Filter {
 
     /**

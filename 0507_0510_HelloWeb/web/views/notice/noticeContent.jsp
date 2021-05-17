@@ -31,6 +31,7 @@
         </tr>
         <tr>
             <th colspan="2">
+            	<input type="button" value="목록으로" onclick="location.assign('<%=request.getContextPath() %>/notice/List')">
                 <input type="button" value="수정하기" onclick="">
                 <input type="button" value="삭제하기" onclick="">
             </th>

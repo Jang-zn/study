@@ -29,4 +29,17 @@ public class NoticeService {
 		close(conn);
 		return n;
 	}
+	
+	public int noticeWrite(Notice n) {
+		Connection conn = getConnection();
+		int result = dao.noticeWrite(conn, n);
+		if(result>0) {
+			commit(conn);
+			close(conn);
+		}else {
+			rollback(conn);
+			close(conn);
+		}
+		return result;
+	}
 }

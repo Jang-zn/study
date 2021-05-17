@@ -53,6 +53,17 @@
 	       		</form>
 	       	</div>
        	</div>
+       	<div id="numPerpage-container">
+       		페이지당 회원수 : 
+       		<form id="numPerFrm" action="">
+       			<select name="numPerpage" id="numPerpage">
+       				<option value="10">10</option>
+       				<option value="5" selected>5</option>
+       				<option value="3">3</option>
+       			</select>
+       		</form>
+       		<!-- 글쓰기는 관리자만 등록 (완) / 상세보기 로그인체크 / 멤버리스트 출력수 조정 -->
+       	</div>
         <table id="tbl-member">
             <thead>
                 <tr>
