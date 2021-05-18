@@ -21,7 +21,9 @@
             <th>첨부파일</th>
             <td>
            	<%if(n.getFilepath()!=null){ %>
+           		<a href="<%=request.getContextPath() %>/fileDownload?fileName='<%=n.getFilepath()%>'">
             		 <img src="<%=request.getContextPath() %>/src/imgs/file.png" width="16px">
+            	</a>
             <%} %>
             </td>
         </tr>
