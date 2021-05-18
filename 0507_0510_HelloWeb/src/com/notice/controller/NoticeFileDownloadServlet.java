@@ -50,7 +50,7 @@ public class NoticeFileDownloadServlet extends HttpServlet {
 		}
 		
 		
-		//응답메세지
+		//응답메세지(response 속성 세팅)
 		response.setContentType("application/octet-stream"); 
 		//octet-stream은 잘 알려지지 않은 확장자를 가진 파일에 대해 적용하는데 이거 쓰면 엥간한거 다 보내진다.
 
