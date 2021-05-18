@@ -6,7 +6,7 @@
 %>
 
 <div id="notice-container">
-    <form action="<%=request.getContextPath() %>/notice/writeEnd" method="post">
+    <form action="<%=request.getContextPath() %>/notice/noticeWriteEnd" method="post" enctype="multipart/form-data">
         <table id="tbl-notice">
         <tr>
             <th>제 목</th>
@@ -27,6 +27,7 @@
         <tr>
             <th colspan="2">
                 <input type="submit" value="등록하기" onclick="">
+                <!-- onclick은 invalid 체크용 -->
             </th>
         </tr>
     </table>
