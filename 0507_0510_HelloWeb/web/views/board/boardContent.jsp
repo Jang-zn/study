@@ -48,24 +48,25 @@
 				<td><%=b.getBoardContent() %></td>
 			</tr>
 			<%--글작성자/관리자인경우 수정삭제 가능 --%>
-			<%if(m!=null&&(m.getUserId().equals(b.getBoardWriter())||m.getUserId().equals("admin"))){%>
-				<tr>
-					<th colspan="2">
+			<tr>
+				<th colspan="2">
+					<input type="button" value="목록으로" onclick="location.assign('<%=request.getContextPath() %>/board/List')">
+						<%if(m!=null&&(m.getUserId().equals(b.getBoardWriter())||m.getUserId().equals("admin"))){%>				
 						<button onclick="fn_update_board();">수정하기</button>
-						<button onclick="fn_delete_board();">삭제하기</button>
-					</th>
-				</tr>
-			<%} %>
+						<button onclick="fn_delete_board();">삭제하기</button>	
+					<%} %>
+				</th>
+			</tr>
 		</table>
    
     </div>
     <script>
 		const fn_update_board=()=>{
-			location.assign("<%=request.getContextPath()%>/board/updateBoard?no=<%=b.getBoardNo()%>");
+			location.assign("<%=request.getContextPath()%>/board/update?boardNo=<%=b.getBoardNo()%>");
 		}
 		const fn_delete_board=()=>{
 			if(confirm("정말로 삭제하시겠습니까?")){
-				location.replace("<%=request.getContextPath()%>/notice/deleteBoard?no=<%=b.getBoardNo()%>&filepath=<%=b.getBoardRenamedFileName()%>");
+				location.replace("<%=request.getContextPath()%>/board/delete?boardNo=<%=b.getBoardNo()%>&filepath=<%=b.getBoardRenamedFileName()%>");
 			}
 		} 
 	</script>
