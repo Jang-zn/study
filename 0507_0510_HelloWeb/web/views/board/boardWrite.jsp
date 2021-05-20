@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+<%@ page import="com.member.model.vo.*"%> 
+<%
+	Member m = (Member)session.getAttribute("login");
+%>
 <style>
 	div#board-container
 	{
@@ -35,32 +39,32 @@
 
 </style>
 <script>
-	내용입력여부 확인 후 전송
+	
 </script>
 
 	<div id='board-container'>
 		<h2>게시판 작성</h2>
-		<form action='' >
+		<form action='<%=request.getContextPath()%>/board/writeEnd' method="post" enctype="multipart/form-data" >
 			<table id='tbl-board'>
 				<tr>
 					<th>제목</th>
-					<td></td>
+					<td><input type="text" id="title" name="title" placeholder="제목을 입력하세요" size="25" required></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td></td>
+					<td><input type="text" id="writer" name="writer" size="25" readonly value="<%=m.getUserId() %>"></td>
 				</tr>
 				<tr>
 					<th>첨부파일</th>
-					<td></td>
+					<td><input type="file" id="file" name="file"></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td>
+					<td><textarea id="content" name="content" cols="40" rows="8" required style="resize:none;"></textarea></td>
 				</tr>
 				<tr>
 					<th colspan="2">
-						
+						<input type="submit" value="등록하기">
 					</th>
 				</tr>
 			</table>

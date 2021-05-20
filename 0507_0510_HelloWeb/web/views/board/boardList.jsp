@@ -3,8 +3,10 @@
     
 <%@ include file="/views/common/header.jsp"%>
 <%@ page import="com.board.model.vo.*" %>
+<%@ page import="com.member.model.vo.*" %>
 <%
 	List<Board> list = (List<Board>)request.getAttribute("boardList");
+	Member m = (Member)session.getAttribute("login");
 %>
 <style>
 	section#board-container{width:600px; margin:0 auto; text-align:center;}
@@ -19,7 +21,9 @@
 	</style>
 	<section id="board-container">
 		<h2>게시판 </h2>
-		<input type="button" id="btn-add" value="글쓰기" onclick="fn_write_board();">
+		<%if(m!=null){%>
+			<input type="button" id="btn-add" value="글쓰기" onclick="fn_write_board();">
+		<%} %>
 		<table id="tbl-board">
 			<tr>
 				<th>번호</th>

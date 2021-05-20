@@ -28,8 +28,42 @@ public class BoardContentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//조회 체크  - coockie에 읽은 게시물 번호를 저장하고 있으면 조회수 안올라가게 함
+		boolean readCheck = false;
+		//글번호 저장 변수 선언
+		String boardReadNo="";
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		Board b = new BoardService().getBoardContent(boardNo);
+		Cookie[] coo =request.getCookies();
+		if(coo!=null) {
+			for(Cookie c : coo) {
+				String name = c.getName();
+				String value = c.getValue();
+				if(name.equals("boardReadNo")) {
+					if(value.contains("["+boardNo+"]")) {
+						readCheck=true;
+						break;
+					}
+					boardReadNo=value;
+				}
+				
+			}
+		}
+		if(!readCheck) {
+			Cookie c = new Cookie("boardReadNo",boardReadNo+"["+boardNo+"]");
+			c.setMaxAge(60*60*24); //로그아웃시에 지워지도록 설정할수도 있음 (매개변수를... 뭐로 줘야되냐)
+								   //아니면 Listener에서 session 끝나면 지워지게 해도 됨
+			response.addCookie(c);
+		}
+		
+		
+		
+		Board b = new BoardService().getBoardContent(boardNo, readCheck);
+		
+		String view ="";
+		if(b==null) {
+			
+		}
+		
 		request.setAttribute("board", b);
 		request.getRequestDispatcher("/views/board/boardContent.jsp").forward(request, response);
 	}

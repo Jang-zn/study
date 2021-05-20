@@ -30,11 +30,24 @@ public class BoardService {
 		return result;
 	}
 	
-	public Board getBoardContent(int boardNo) {
+	public Board getBoardContent(int boardNo, boolean readCheck) {
 		Connection conn = getConnection();
-		Board b = dao.getBoardContent(conn, boardNo);
+		Board b = dao.getBoardContent(conn, boardNo, readCheck);
+		commit(conn);
 		close(conn);
 		return b;
 	}
 	
+	public int boardWrite(Board b) {
+		Connection conn = getConnection();
+		int result = dao.boardWrite(conn, b);
+		if(result>0) {
+			commit(conn);
+			close(conn);
+		}else {
+			rollback(conn);
+			close(conn);
+		}
+		return result;
+	}
 }

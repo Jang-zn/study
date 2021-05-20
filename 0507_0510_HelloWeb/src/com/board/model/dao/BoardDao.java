@@ -72,17 +72,20 @@ public class BoardDao {
 		}
 	}
 	
-	public Board getBoardContent(Connection conn, int boardNo){
+	public Board getBoardContent(Connection conn, int boardNo, boolean readCheck){
 		Properties p = new Properties();
 		List<Board> list = new ArrayList();
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt_readCount = null;
 		ResultSet rs = null;
 		Board b = new Board();
 		try {
 			String path = BoardDao.class.getResource("/SQL/board_sql.properties").getPath();
 			p.load(new FileReader(path));
 			pstmt=conn.prepareStatement(p.getProperty("selectBoardContent"));
+			pstmt_readCount=conn.prepareStatement(p.getProperty("readCountUpdate"));
 			pstmt.setInt(1,boardNo);
+			pstmt_readCount.setInt(2, boardNo);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				b.setBoardNo(rs.getInt(1));
@@ -92,9 +95,14 @@ public class BoardDao {
 				b.setBoardOriginalFileName(rs.getString(5));
 				b.setBoardRenamedFileName(rs.getString(6));
 				b.setBoardDate(rs.getDate(7));
-				int readCount = rs.getInt(8)+1;
+				int readCount = rs.getInt(8);
+				if(!readCheck) {
+					readCount = rs.getInt(8)+1;
+				}
+				pstmt_readCount.setInt(1, readCount);
 				b.setBoardReadCount(readCount);
 			}
+			pstmt_readCount.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -103,6 +111,27 @@ public class BoardDao {
 			return b;
 		}
 	}
-	
+	public int boardWrite(Connection conn, Board b) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		Properties p = new Properties();
+		try {
+			String path = BoardDao.class.getResource("/SQL/board_sql.properties").getPath();
+			p.load(new FileReader(path));
+			pstmt = conn.prepareStatement(p.getProperty("boardWrite"));
+			pstmt.setString(1,b.getBoardTitle());
+			pstmt.setString(2,b.getBoardWriter());
+			pstmt.setString(3,b.getBoardContent());
+			pstmt.setString(4,b.getBoardOriginalFileName());
+			pstmt.setString(5,b.getBoardRenamedFileName());
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			return result;
+		}
+		
+	}
 	
 }
