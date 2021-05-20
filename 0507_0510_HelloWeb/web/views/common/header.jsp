@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.member.model.vo.*" %>
+<%@ page import = "java.util.*" %>
 <% Member loginMember = (Member)request.getSession().getAttribute("login");
    Cookie [] cookies = request.getCookies();
    String saveId = null;
@@ -78,7 +79,7 @@
 			<ul class="main-nav">
 				<li class="home"><a href="<%=request.getContextPath()%>">Home</a></li>
 				<li id="notice"><a href="<%=request.getContextPath()%>/notice/List">공지사항</a></li>
-				<li id="board"><a href="">게시판</a></li>
+				<li id="board"><a href="<%=request.getContextPath()%>/board/List">게시판</a></li>
 				<%if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
 					<li id="memberManage"><a href="<%=request.getContextPath()%>/admin/memberList">회원관리</a></li>
 				<%} %>
