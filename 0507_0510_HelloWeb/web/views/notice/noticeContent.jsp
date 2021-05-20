@@ -34,12 +34,22 @@
         <tr>
             <th colspan="2">
             	<input type="button" value="목록으로" onclick="location.assign('<%=request.getContextPath() %>/notice/List')">
-                <input type="button" value="수정하기" onclick="">
-                <input type="button" value="삭제하기" onclick="">
+                <input type="button" value="수정하기" onclick="fn_update();">
+                <input type="button" value="삭제하기" onclick="fn_delete();">
             </th>
         </tr>
     </table>
     </div>
+    <script>
+		const fn_update=()=>{
+			location.assign("<%=request.getContextPath()%>/notice/updateNotice?no=<%=n.getNoticeNo()%>");
+		}
+		const fn_delete=()=>{
+			if(confirm("정말로 삭제하시겠습니까?")){
+				location.replace("<%=request.getContextPath()%>/notice/deleteNotice?no=<%=n.getNoticeNo()%>&filepath=<%=n.getFilepath()%>");
+			}
+		} 
+	</script>
      <style>
     section#notice-container{width:600px; margin:0 auto; text-align:center;}
     section#notice-container h2{margin:10px 0;}
