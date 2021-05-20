@@ -70,7 +70,39 @@ public class BoardDao {
 			close(pstmt);
 			return result;
 		}
-		
 	}
+	
+	public Board getBoardContent(Connection conn, int boardNo){
+		Properties p = new Properties();
+		List<Board> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Board b = new Board();
+		try {
+			String path = BoardDao.class.getResource("/SQL/board_sql.properties").getPath();
+			p.load(new FileReader(path));
+			pstmt=conn.prepareStatement(p.getProperty("selectBoardContent"));
+			pstmt.setInt(1,boardNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				b.setBoardNo(rs.getInt(1));
+				b.setBoardTitle(rs.getString(2));
+				b.setBoardWriter(rs.getString(3));
+				b.setBoardContent(rs.getString(4));
+				b.setBoardOriginalFileName(rs.getString(5));
+				b.setBoardRenamedFileName(rs.getString(6));
+				b.setBoardDate(rs.getDate(7));
+				int readCount = rs.getInt(8)+1;
+				b.setBoardReadCount(readCount);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+			return b;
+		}
+	}
+	
 	
 }

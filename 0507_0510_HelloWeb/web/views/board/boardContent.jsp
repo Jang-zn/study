@@ -3,7 +3,8 @@
 <%@ include file="/views/common/header.jsp"%>
 <%@ page import="com.board.model.vo.*"  %>
 <%
-	Board b = (Board)request.getAttribute("boardContent");
+	Board b = (Board)request.getAttribute("board");
+	Member m = (Member)session.getAttribute("login");
 %>
 <style>
     section#board-container{width:600px; margin:0 auto; text-align:center;}
@@ -18,41 +19,54 @@
 		<table id="tbl-board">
 			<tr>
 				<th>글번호</th>
-				<td></td>
+				<td><%=b.getBoardNo() %></td>
 			</tr>
 			<tr>
 				<th>제 목</th>
-				<td></td>
+				<td><%=b.getBoardTitle() %></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td></td>
+				<td><%=b.getBoardWriter() %></td>
 			</tr>
 			<tr>
 				<th>조회수</th>
-				<td></td>
+				<td><%=b.getBoardReadCount() %></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
 				<td>
-				 있으면 이미지출력 없으면 공란, 클릭하면 다운로드할 수 있게 구현
+				 <%if(b.getBoardRenamedFileName()!=null){ %>
+           			<a href="<%=request.getContextPath() %>/fileDownload_board?fileName=<%=b.getBoardRenamedFileName()%>">
+            		 <img src="<%=request.getContextPath() %>/src/imgs/file.png" width="16px">
+            		</a>
+           		 <%} %>
 				</td>
 			</tr>
 			<tr>
 				<th>내 용</th>
-				<td></td>
+				<td><%=b.getBoardContent() %></td>
 			</tr>
 			<%--글작성자/관리자인경우 수정삭제 가능 --%>
-			
-			<tr>
-				<th colspan="2">
-					수정하기, 삭제하기 버튼
-				</th>
-			</tr>
-			
-			
+			<%if(m!=null&&(m.getUserId().equals(b.getBoardWriter())||m.getUserId().equals("admin"))){%>
+				<tr>
+					<th colspan="2">
+						<button onclick="fn_update_board();">수정하기</button>
+						<button onclick="fn_delete_board();">삭제하기</button>
+					</th>
+				</tr>
+			<%} %>
 		</table>
    
     </div>
-
+    <script>
+		const fn_update_board=()=>{
+			location.assign("<%=request.getContextPath()%>/board/updateBoard?no=<%=b.getBoardNo()%>");
+		}
+		const fn_delete_board=()=>{
+			if(confirm("정말로 삭제하시겠습니까?")){
+				location.replace("<%=request.getContextPath()%>/notice/deleteBoard?no=<%=b.getBoardNo()%>&filepath=<%=b.getBoardRenamedFileName()%>");
+			}
+		} 
+	</script>
 <%@ include file="/views/common/footer.jsp"%>
