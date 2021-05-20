@@ -29,4 +29,12 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
+	public Board getBoardContent(int boardNo) {
+		Connection conn = getConnection();
+		Board b = dao.getBoardContent(conn, boardNo);
+		close(conn);
+		return b;
+	}
+	
 }

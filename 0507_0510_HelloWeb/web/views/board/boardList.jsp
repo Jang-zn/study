@@ -19,6 +19,7 @@
 	</style>
 	<section id="board-container">
 		<h2>게시판 </h2>
+		<input type="button" id="btn-add" value="글쓰기" onclick="fn_write_board();">
 		<table id="tbl-board">
 			<tr>
 				<th>번호</th>
@@ -62,4 +63,10 @@
 			<%=request.getAttribute("pageBar")%>
 		</div>
 	</section>
+	<script>
+		const fn_write_board=()=>{
+			location.assign("<%=request.getContextPath()%>/board/write");
+		}
+	
+	</script>
 <%@ include file="/views/common/footer.jsp"%>
