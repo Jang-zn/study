@@ -1,6 +1,7 @@
 package com.board.controller;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -58,13 +59,15 @@ public class BoardContentServlet extends HttpServlet {
 		
 		
 		Board b = new BoardService().getBoardContent(boardNo, readCheck);
-		
+		List<Comment> list = new BoardService().getComment(boardNo);
 		String view ="";
 		if(b==null) {
 			
 		}
 		
+		System.out.println(list!=null?list.size():"content servlet : null");
 		request.setAttribute("board", b);
+		request.setAttribute("commentList", list);
 		request.getRequestDispatcher("/views/board/boardContent.jsp").forward(request, response);
 	}
 
