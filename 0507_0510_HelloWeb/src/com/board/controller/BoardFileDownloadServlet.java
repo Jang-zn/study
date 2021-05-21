@@ -28,6 +28,7 @@ public class BoardFileDownloadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//File download
 		String fileName = request.getParameter("fileName");
+		String oriFileName = request.getParameter("oriFileName");
 		//입출력 Stream을 local hdd - 서버 - client간 사용한다고 생각하면 됨
 		// client에 보낼때 mime 정해서 보내주면 브라우저가 알아서 처리해줌
 		
@@ -44,9 +45,9 @@ public class BoardFileDownloadServlet extends HttpServlet {
 		boolean isMS=header.contains("Trident")||header.contains("MSIE"); //true면 익스플로러라는 얘기임.. 또 너야?
 		if(isMS) {
 			//익스플로러일때.. 어휴 이새꺄
-			fileNameAfterEnc = URLEncoder.encode(fileName,"utf-8").replaceAll("\\+","%20");
+			fileNameAfterEnc = URLEncoder.encode(oriFileName,"utf-8").replaceAll("\\+","%20");
 		}else {
-			fileNameAfterEnc = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
+			fileNameAfterEnc = new String(oriFileName.getBytes("UTF-8"),"ISO-8859-1");
 		}
 		
 		

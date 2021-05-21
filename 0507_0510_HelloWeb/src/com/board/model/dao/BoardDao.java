@@ -108,6 +108,7 @@ public class BoardDao {
 		}finally {
 			close(rs);
 			close(pstmt);
+			close(pstmt_readCount);
 			return b;
 		}
 	}
@@ -134,4 +135,59 @@ public class BoardDao {
 		
 	}
 	
+	public int writeComment(Connection conn, Comment c) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		Properties p = new Properties();
+		try {
+			String path = BoardDao.class.getResource("/SQL/board_sql.properties").getPath();
+			p.load(new FileReader(path));
+			pstmt = conn.prepareStatement(p.getProperty("commentWrite"));
+			pstmt.setInt(1,c.getBoardCommentLevel());
+			pstmt.setString(2,c.getBoardCommentWriter());
+			pstmt.setString(3, c.getBoardCommentContent());
+			pstmt.setInt(4, c.getBoardRef());
+			pstmt.setString(5, c.getBoardCommentRef()==0?null:""+c.getBoardCommentRef());
+			//0일때는 null로 세팅
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			return result;
+		}
+	}
+	
+	public List<Comment> getComment(Connection conn, int boardNo){
+		Properties p = new Properties();
+		List<Comment> list = new ArrayList();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Comment c = null;
+		try {
+			String path = BoardDao.class.getResource("/SQL/board_sql.properties").getPath();
+			p.load(new FileReader(path));
+			pstmt=conn.prepareStatement(p.getProperty("selectComment"));
+			pstmt.setInt(1, boardNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				c=new Comment();
+				c.setBoardCommentNo(rs.getInt(1));
+				c.setBoardCommentLevel(rs.getInt(2));
+				c.setBoardCommentWriter(rs.getString(3));
+				c.setBoardCommentContent(rs.getString(4));
+				c.setBoardRef(rs.getInt(5));
+				c.setBoardCommentRef(rs.getInt(6));
+				c.setBoardCommentDate(rs.getDate(7));
+				list.add(c);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			System.out.println(list.size());
+			close(rs);
+			close(pstmt);
+			return list;
+		}
+	}
 }

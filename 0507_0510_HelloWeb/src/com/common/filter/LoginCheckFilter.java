@@ -38,10 +38,10 @@ public class LoginCheckFilter implements Filter {
 			request.setAttribute("msg","잘못된 경로로 접근했습니다. err:null");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		}else if(!((Member)session.getAttribute("login")).getUserId().equals(request.getParameter("userId"))){
-			request.setAttribute("msg","잘못된 경로로 접근했습니다. err:ID");
-			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//		}else if(!((Member)session.getAttribute("login")).getUserId().equals(request.getParameter("userId"))){
+//			request.setAttribute("msg","잘못된 경로로 접근했습니다. err:ID");
+//			request.setAttribute("loc", "/");
+//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}else {
 			// pass the request along the filter chain
 			chain.doFilter(request, response);

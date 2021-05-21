@@ -50,4 +50,25 @@ public class BoardService {
 		}
 		return result;
 	}
+	
+	public int writeComment(Comment c) {
+		Connection conn = getConnection();
+		int result = dao.writeComment(conn, c);
+		if(result>0) {
+			commit(conn);
+			close(conn);
+		}else {
+			rollback(conn);
+			close(conn);
+		}
+		return result;
+	}
+	
+	public List<Comment> getComment(int boardNo){
+		Connection conn = getConnection();
+		List<Comment> list = dao.getComment(conn, boardNo);
+		close(conn);
+		System.out.println("service : "+list.size());
+		return list;
+	}
 }

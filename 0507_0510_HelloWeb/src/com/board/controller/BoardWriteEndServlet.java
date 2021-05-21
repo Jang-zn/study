@@ -10,6 +10,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.*;
 
 import com.board.model.service.*;
 import com.board.model.vo.*;
+import com.common.*;
 import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.*;
 
@@ -41,7 +42,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 		String path = getServletContext().getRealPath("/upload/board");
 		int maxSize = 1024*1024*10;
 		String encode = "UTF-8";
-		FileRenamePolicy renamePolicy = new DefaultFileRenamePolicy();
+		FileRenamePolicy renamePolicy = new MyRenameFile();
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, renamePolicy);
 		Board b = new Board();
 		b.setBoardTitle(mr.getParameter("title"));
