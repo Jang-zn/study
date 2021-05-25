@@ -8,6 +8,7 @@
 <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
+	<input type="text" id="nick" size="8">
 	<input type="text" id="msg">
 	<button id="sendmsg">전송</button>
 	<div id="container"></div>
@@ -17,12 +18,23 @@
 		
 		//이벤트 속성 설정
 		socket.onopen=(e)=>{
-			alert("web socket 접속");
 			console.log(e);
 		}
 		
 		socket.onmessage=(e)=>{
-			console.log(e);
+			let data = e.data.split(",");
+			let tag="";
+			if($("#nick").val()==data[0]){
+				tag = $("<p>").text(data[0]+" : "+data[1]).css({
+					"text-align":"left"
+				}); //jsp는 `` 안먹음..	
+			}else{
+				tag = $("<p>").text(data[0]+" : "+data[1]).css({
+					"text-align":"right"
+				}); //jsp는 `` 안먹음..
+			}
+			
+			$("#container").append(tag);
 		}
 		
 		socket.onclose=(e)=>{
@@ -30,7 +42,7 @@
 		}
 		
 		$("#sendmsg").click(e=>{
-			socket.send($("#msg").val());
+			socket.send($("#nick").val()+","+$("#msg").val());
 		})
 	</script>
 </body>
