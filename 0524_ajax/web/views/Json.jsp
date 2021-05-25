@@ -54,7 +54,8 @@
 					let gender = $("<td>").html(v["gender"]);
 					let age = $("<td>").html(v["age"]);
 					let email = $("<td>").html(v["email"]);
-					body.append(id).append(name).append(gender).append(age).append(email);
+					let enrollDate = $("<td>").html(v["enrollDate"]);
+					body.append(id).append(name).append(gender).append(age).append(email).append(enrollDate);
 					table.append(body);
 				});
 				$("#container").html(table);
