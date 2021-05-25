@@ -20,12 +20,13 @@
 					<input type="button" onclick="fn_duplicate();" value="중복확인">
 					<span id="d_check"></span>
 					<script>
-						$("#userId").keyup(e=>{
+						$("#userId_").keyup(e=>{
 							if($(e.target).val().length>=4){
 								$.ajax({
 									url:"<%=request.getContextPath()%>/ajax/duplicateCheck",
-									data:{"userId",$(e.target).val()},
+									data:{"userId":$(e.target).val()},
 									success:data=>{
+										console.log(data);
 										if(data){
 											$("#d_check").html("가능합니다");
 										}else{
