@@ -7,9 +7,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-import org.json.simple.*;
-
 import com.admin.model.service.*;
+import com.google.gson.*;
 import com.member.model.vo.*;
 
 /**
@@ -42,20 +41,31 @@ public class SearchIdServlet extends HttpServlet {
 //			json.put("age",m.getAge());
 //			json.put("email",m.getEmail());
 //		}
+		
+		
+		
+		
 		//JSONArray 클래스를 통해서 JSONObject를 List 형태로 저장
-		JSONArray jlist = new JSONArray();
-		for(Member m : list) {
-			JSONObject json = new JSONObject();
-			json.put("userId",m.getUserId());
-			json.put("userName",m.getUserName());
-			json.put("gender",m.getGender());
-			json.put("age",m.getAge());
-			json.put("email",m.getEmail());
-			//json.put("enrollDate", m.getEnrollDate()); //Date는 Object라서 String처리 해줘야됨
-			jlist.add(json);
-		}
+//		JSONArray jlist = new JSONArray();
+//		for(Member m : list) {
+//			JSONObject json = new JSONObject();
+//			json.put("userId",m.getUserId());
+//			json.put("userName",m.getUserName());
+//			json.put("gender",m.getGender());
+//			json.put("age",m.getAge());
+//			json.put("email",m.getEmail());
+//			//json.put("enrollDate", m.getEnrollDate()); //Date는 Object라서 String처리 해줘야됨
+//			jlist.add(json);
+//		}
+		
+		
+		
+		//Gson 쓰는거
 		response.setContentType("application/json;charset=utf-8");
-		response.getWriter().print(jlist);
+		new Gson().toJson(list,response.getWriter());
+		//끝
+		//이렇게 넣으면 멤버변수 명으로 파싱돼서 알아서 들어감
+		
 	}
 
 	/**

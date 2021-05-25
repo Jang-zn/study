@@ -18,6 +18,24 @@
 				<td>
 					<input type="text" placeholder="4글자이상" name="userId" id="userId_" value="<%=checkedId %>">
 					<input type="button" onclick="fn_duplicate();" value="중복확인">
+					<span id="d_check"></span>
+					<script>
+						$("#userId").keyup(e=>{
+							if($(e.target).val().length>=4){
+								$.ajax({
+									url:"<%=request.getContextPath()%>/ajax/duplicateCheck",
+									data:{"userId",$(e.target).val()},
+									success:data=>{
+										if(data){
+											$("#d_check").html("가능합니다");
+										}else{
+											$("#d_check").html("불가능합니다");
+										}
+									}
+								});
+							}
+						});
+					</script>
 				</td>
 			</tr>
 			<!-- form 안에 button태그 넣으면 Event 발생해서 submit처리됨 input type=button 줘야됨 -->
