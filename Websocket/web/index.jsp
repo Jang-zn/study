@@ -22,15 +22,18 @@
 		}
 		
 		socket.onmessage=(e)=>{
-			let data = e.data.split(",");
+			/* let data = e.data.split(",");  Gson 쓰면 스플릿 불필요*/
+			//js 객체 형식으로 넘어온 문자열은 객체로 변환 가능
+			console.log(JSON.parse(e.data));
+			const jdata = JSON.parse(e.data);
 			let tag="";
-			if($("#sendman").val()==data[0]){
-				tag = $("<p>").text(data[0]+" : "+data[2]).css({
+			if($("#sendman").val()==jdata.sender){
+				tag = $("<p>").text(jdata.sender+" : "+jdata.msg).css({
 					"text-align":"right",
 					"background-color":"yellowgreen"
 				}); //jsp는 `` 안먹음..	
 			}else{
-				tag = $("<p>").text(data[0]+" : "+data[2]).css({
+				tag = $("<p>").text(jdata.sender+" : "+jdata.msg).css({
 					"text-align":"left",
 						"background-color":"gold"
 				}); //jsp는 `` 안먹음..
@@ -44,9 +47,11 @@
 		}
 		
 		$("#sendmsg").click(e=>{
-			const msg = new Message($("#sendman").val(),$("#receiveman").val(),$("#msg").val())
-			socket.send(msg);
-		})
+			const sendmsg = new Message($("#sendman").val(),$("#receiveman").val(),$("#msg").val())
+			socket.send(JSON.stringify(sendmsg)); 
+			//JSON.stringify() 하면 생성자함수로 생성된 객체가 {키:밸류,....}형식의 String으로 보내짐
+			//서버에서 GSON으로 자동 parsing 가능 (생성자 함수와 같은 class를 만들어놓으면 거기다 저장해버릴수 있음)
+		});
 		
 		//생성자 함수 : 함수를 java class 생성자처럼 만들어서 갖다 쓰는것
 		function Message(sender, receiver, msg){
