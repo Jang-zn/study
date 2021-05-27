@@ -27,7 +27,7 @@
 			console.log(JSON.parse(e.data));
 			const jdata = JSON.parse(e.data);
 			let tag="";
-			if($("#sendman").val()==jdata.sender){
+			if($("#sendman").val()==jdata.sender){ //jdata["sender"] 로 써도 됨
 				tag = $("<p>").text(jdata.sender+" : "+jdata.msg).css({
 					"text-align":"right",
 					"background-color":"yellowgreen"
