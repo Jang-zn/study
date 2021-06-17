@@ -23,5 +23,11 @@
 		<input type="text" name="addr">
 		<input type="submit" value="test">
 	</form>
+	
+	
+	<h2>forward</h2>
+	<p>request.forward하고 같음</p>
+	<a href="<%=request.getContextPath() %>/views/stdtag/forward.jsp">forward</a>
+	<!-- mvc1 pattern에서 jsp만 가지고 개발할때 쓰던거 -->
 </body>
 </html>
