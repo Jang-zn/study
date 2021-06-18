@@ -37,6 +37,45 @@
 		List<Person> list = List.of(new Person("장우영", "서울", 30), 
 				new Person("장우영29","울산",29), 
 				new Person("장우영26", "이천", 26));
+		request.setAttribute("list",list);
 	%>
+	<table border="1">
+	<tr>
+		<th>이름</th>
+		<th>나이</th>
+		<th>주소</th>
+	</tr>
+	<c:forEach var="i" items="${list}">
+		<tr>
+		<td><c:out value="${i.name }"/></td>
+		<td><c:out value="${i.age }"/></td>
+		<td><c:out value="${i.addr }"/></td>
+		</tr>
+	</c:forEach>
+	</table>
+	<br><br><br>
+	
+	<table border="1">
+	<c:forEach var="p" items="${list }" varStatus="vs">
+	<c:if test="${vs.first }">
+	<tr>
+		<th>이름</th>
+		<th>나이</th>
+		<th>주소</th>
+	</tr>
+	</c:if>
+	<tr>
+		<td><c:out value="${p.name }"/></td>
+		<td><c:out value="${p.age }"/></td>
+		<td><c:out value="${p.addr }"/></td>
+	</tr>
+	<c:if test="${vs.last }">
+	<tr>
+		<td colspan="2">계</td>
+		<td>${vs.count }명</td>
+	</tr>
+	</c:if>
+	</c:forEach>
+	</table>
 </body>
 </html>
