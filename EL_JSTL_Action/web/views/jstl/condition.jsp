@@ -45,7 +45,14 @@
 	<p><c:out value="	<c:when test=''> 로직 </c:when>"/></p>
 	<p><c:out value="	<c:when test=''> 로직 </c:when>"/></p>
 	<p><c:out value="	<c:when test=''> 로직 </c:when>"/></p>
-	<p><c:out value="	<c:otherwise> 로직 "/></p>
+	<p><c:out value="	<c:otherwise> 로직 </c:otherwise>"/></p>
 	<p><c:out value="</c:choose>"/></p>
+	<form action="chooseTest.jsp">
+		<input type="number" name="choice"><br>
+		<input type="submit">
+	</form>
+	<br><br>
+	
+	<a href="${pageContext.request.contextPath}/views/jstl/foreach.jsp">다음</a>
 </body>
 </html>
