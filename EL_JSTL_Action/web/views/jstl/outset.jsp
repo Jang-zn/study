@@ -56,7 +56,11 @@
 	<br><br>
 	
 	<!-- 걍 써도 되는데 c:out의 존재 이유가 뭐임? -->
+	<!-- 태그 주입같은걸 c:out으로만 출력할 경우 별도 설정해서 내가 띄워주지 않는이상 막을 수 있음 -->
 	
+	<input type="text" value="<c:out value='${age }'/>">
 	
+	<br><br>
+	<a href="${path}/views/jstl/condition.jsp">다음</a>
 </body>
 </html>
