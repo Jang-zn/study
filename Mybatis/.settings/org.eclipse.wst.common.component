@@ -2,6 +2,8 @@
     <wb-module deploy-name="Mybatis">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sql"/>
         <property name="context-root" value="Mybatis"/>
         <property name="java-output-path" value="/Mybatis/web/WEB-INF/classes"/>
     </wb-module>
