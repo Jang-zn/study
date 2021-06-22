@@ -77,5 +77,21 @@
 	</c:if>
 	</c:forEach>
 	</table>
+	
+	
+	<h3>c:fortokens 사용</h3>
+	<p> StringTokenizer 객체랑 비슷함</p>
+	<ul><c:out value="<c:forToken>"/>
+		<li>var : 값을 받을 변수명</li>
+		<li>delims : 분리기준이 되는 문자</li>
+		<li>items : 분리할 문자열</li>
+	</ul>
+	<c:set var="hobby" value="노래,축구,장기,포커,게임"/>
+	<c:forTokens items="${hobby}" delims="," var="h">
+		<h5><c:out value="${h}"/></h5>
+	</c:forTokens>
+	
+	
+	
 </body>
 </html>
