@@ -40,6 +40,22 @@
 		학생 번호 : <input type="number" name="no"><br>
 		<input type="submit" value="삭제">
 	</form>
-	
+	<h2>DB data 조회 (SELECT)</h2>
+	<ul>
+		<li> 1개 row 가져오기<br>
+			<a href="${path}/studentCount">학생수 조회</a><br>
+			<form action="${path}/selectStudentOne">
+				<input type="number" name="no">
+				<input type="submit" value="조회">
+			</form>
+			
+		</li>
+		<li> 여러 row 가져오기<br>
+		
+		</li>
+		<li> 여러 row중 부분을 가져오기(ex: paging)<br>
+		
+		</li>
+	</ul>
 </body>
 </html>
