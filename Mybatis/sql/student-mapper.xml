@@ -13,4 +13,10 @@
   <insert id="insertStudentInfo" parameterType="com.student.model.vo.Student">
   	INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL, #{studentName}, #{studentTel}, #{studentEmail}, #{studentAddr}, DEFAULT)
   </insert>  
+  <update id="updateStudentInfo" parameterType="com.student.model.vo.Student">
+  	UPDATE STUDENT SET STUDENT_TEL=#{studentTel}, STUDENT_EMAIL=#{studentEmail},STUDENT_ADDR=#{studentAddr} WHERE STUDENT_NO=#{studentNo}
+  </update>
+  <delete id="deleteStudentInfo" parameterType="int">
+  	DELETE FROM STUDENT WHERE STUDENT_NO=#{no}
+  </delete>
 </mapper>

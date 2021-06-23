@@ -27,5 +27,19 @@
 		주소 : <input type="text" name="addr"><br>
 		<input type="submit" value="저장">
 	</form>
+	<h4>학생정보 입력받아 수정</h4>
+	<form action="${path}/updateStudentInfo">
+		학생 번호 : <input type="number" name="no"><br>
+		전화번호 : <input type="text" name="tel"><br>
+		이메일 : <input type="text" name="email"><br>
+		주소 : <input type="text" name="addr"><br>
+		<input type="submit" value="수정">
+	</form>
+	<h4>학생번호로 삭제</h4>
+	<form action="${path}/deleteStudentInfo">
+		학생 번호 : <input type="number" name="no"><br>
+		<input type="submit" value="삭제">
+	</form>
+	
 </body>
 </html>
