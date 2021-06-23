@@ -32,4 +32,12 @@ public class StudentDao {
 		int result=session.delete("student.deleteStudentInfo", no); 
 		return result;
 	}
+	public int studentCount(SqlSession session) {
+		int result=session.selectOne("student.studentCount"); 
+		return result;
+	}
+	public Student selectStudentOne(SqlSession session, int no) {
+		Student result=session.selectOne("student.selectStudentOne",no); 
+		return result;
+	}
 }

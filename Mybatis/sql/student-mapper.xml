@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="student">
+	<resultMap type="com.student.model.vo.Student" id="studentRS">
+		<id property="studentNo" column="STUDENT_NO"/>
+		<result property="studentName" column="STUDENT_NAME"/>
+		<result property="studentTel" column="STUDENT_TEL"/>
+		<result property="studentEmail" column="STUDENT_EMAIL"/>
+		<result property="studentAddr" column="STUDENT_ADDR"/>
+		<result property="regDate" column="REG_DATE"/>
+	</resultMap>
 <!-- insert / delete / update는 반환형이 int로 고정이라 따로 설정 안해줘도 됨 -->
 <!-- SQL문에 ; 찍지마라.. -->
   <insert id="insertStudent">
   	INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL, '장우영', '01031313131', '11111@1111.com', '서울', DEFAULT)
   </insert>
   <!-- parameterType에 지정된 매개변수로 들어온 변수명을 #{}에 넣어주고, 객체인 경우 패키지명으로 Type 지정하고 멤버변수명을 #{}안에 넣어줌  -->
+  <!-- parameterType의 경우 매개변수로 들어오는 Data의 자료형을 알아서 맞춰서 지정되므로 필수로 지정해줄 필요는 없음 -->
   <insert id="insertStudentName" parameterType="string">
   	INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL, #{name}, '01022222222', '22222@2222.com', '서울', DEFAULT)
   </insert>  
@@ -19,4 +28,10 @@
   <delete id="deleteStudentInfo" parameterType="int">
   	DELETE FROM STUDENT WHERE STUDENT_NO=#{no}
   </delete>
+  <select id="studentCount" resultType="int">
+  	SELECT COUNT(STUDENT_NO) FROM STUDENT
+  </select>
+  <select id="selectStudentOne" resultMap="studentRS">
+  	SELECT * FROM STUDENT WHERE STUDENT_NO=#{no}
+  </select>
 </mapper>

@@ -71,4 +71,18 @@ public class StudentService {
 		return result;
 	}
 	
+	public int studentCount() {
+		SqlSession session = getSession();
+		int result = dao.studentCount(session);
+		session.close();
+		return result;
+	}
+	
+	public Student selectStudentOne(int no) {
+		SqlSession session = getSession();
+		Student result = dao.selectStudentOne(session, no);
+		session.close();
+		return result;
+	}
+	
 }
