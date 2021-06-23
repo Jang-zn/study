@@ -14,5 +14,18 @@
 	<h3>마이바티스 이용</h3>
 	<h4>학생정보 등록하기</h4>
 	<a href="${path}/insertStudent">학생입력</a>
+	<h4>학생이름 변경해서 등록</h4>
+	<form action="${path}/insertStudentName">
+		<input type="text" name="name"><br>
+		<input type="submit" value="저장">
+	</form>
+	<h4>학생정보 입력받아 등록</h4>
+	<form action="${path}/insertStudentInfo">
+		이름 : <input type="text" name="name"><br>
+		전화번호 : <input type="text" name="tel"><br>
+		이메일 : <input type="text" name="email"><br>
+		주소 : <input type="text" name="addr"><br>
+		<input type="submit" value="저장">
+	</form>
 </body>
 </html>

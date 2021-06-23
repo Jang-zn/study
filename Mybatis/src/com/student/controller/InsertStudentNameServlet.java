@@ -13,14 +13,14 @@ import com.student.model.service.StudentService;
 /**
  * Servlet implementation class InsertStudentServlet
  */
-@WebServlet("/insertStudent")
-public class InsertStudentServlet extends HttpServlet {
+@WebServlet("/insertStudentName")
+public class InsertStudentNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public InsertStudentServlet() {
+    public InsertStudentNameServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -28,7 +28,8 @@ public class InsertStudentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int result = new StudentService().insertStudent();
+		String name=request.getParameter("name");
+		int result = new StudentService().insertStudentName(name);
 		response.setContentType("text/html; charset=utf-8");
 		response.getWriter().print(result>0?"성공":"실패");
 	}

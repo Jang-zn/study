@@ -17,7 +17,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="/sql/student-mapper.xml"/>
+		<mapper resource="student-mapper.xml"/>
 	</mappers>
 </configuration>
 

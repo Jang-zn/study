@@ -5,5 +5,12 @@
 <!-- SQL문에 ; 찍지마라.. -->
   <insert id="insertStudent">
   	INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL, '장우영', '01031313131', '11111@1111.com', '서울', DEFAULT)
-  </insert> 
+  </insert>
+  <!-- parameterType에 지정된 매개변수로 들어온 변수명을 #{}에 넣어주고, 객체인 경우 패키지명으로 Type 지정하고 멤버변수명을 #{}안에 넣어줌  -->
+  <insert id="insertStudentName" parameterType="string">
+  	INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL, #{name}, '01022222222', '22222@2222.com', '서울', DEFAULT)
+  </insert>  
+  <insert id="insertStudentInfo" parameterType="com.student.model.vo.Student">
+  	INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL, #{studentName}, #{studentTel}, #{studentEmail}, #{studentAddr}, DEFAULT)
+  </insert>  
 </mapper>
