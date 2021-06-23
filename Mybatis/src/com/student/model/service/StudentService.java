@@ -48,4 +48,27 @@ public class StudentService {
 		session.close();
 		return result;
 	}
+	public int updateStudentInfo(Student s) {
+		SqlSession session = getSession();
+		int result = dao.updateStudentInfo(session, s);
+		if(result>0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	public int deleteStudentInfo(int no) {
+		SqlSession session = getSession();
+		int result = dao.deleteStudentInfo(session, no);
+		if(result>0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+	
 }

@@ -21,7 +21,15 @@ public class StudentDao {
 		return result;
 	}
 	public int insertStudentInfo(SqlSession session, Student s) {
-		int result=session.insert("student.insertStudentInfo", s); //query문은 namespace명.queryTagId 로 선택해줌
+		int result=session.insert("student.insertStudentInfo", s); 
+		return result;
+	}
+	public int updateStudentInfo(SqlSession session, Student s) {
+		int result=session.update("student.updateStudentInfo", s); 
+		return result;
+	}
+	public int deleteStudentInfo(SqlSession session, int no) {
+		int result=session.delete("student.deleteStudentInfo", no); 
 		return result;
 	}
 }
