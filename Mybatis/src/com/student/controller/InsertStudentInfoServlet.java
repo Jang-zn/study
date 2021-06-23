@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.student.model.service.StudentService;
+import com.student.model.vo.Student;
 
 /**
  * Servlet implementation class InsertStudentServlet
  */
-@WebServlet("/insertStudent")
-public class InsertStudentServlet extends HttpServlet {
+@WebServlet("/insertStudentInfo")
+public class InsertStudentInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public InsertStudentServlet() {
+    public InsertStudentInfoServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -28,7 +29,13 @@ public class InsertStudentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int result = new StudentService().insertStudent();
+		String name=request.getParameter("name");
+		String tel=request.getParameter("tel");
+		String email=request.getParameter("email");
+		String addr=request.getParameter("addr");
+		Student s = new Student();
+		s.setStudentName(name); s.setStudentEmail(email); s.setStudentTel(tel); s.setStudentAddr(addr);
+		int result = new StudentService().insertStudentInfo(s);
 		response.setContentType("text/html; charset=utf-8");
 		response.getWriter().print(result>0?"성공":"실패");
 	}
