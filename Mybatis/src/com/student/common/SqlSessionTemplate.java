@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class SQLSessionTemplate {
+public class SqlSessionTemplate {
 	//Mybatis가 제공하는 sql session을 만들고 사용하게 만들어주는 클래스
 	
 	//1. SqlSessionFactoryBuilder 생성

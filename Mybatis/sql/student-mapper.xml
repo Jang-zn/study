@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="student">
-  
+<!-- insert / delete / update는 반환형이 int로 고정이라 따로 설정 안해줘도 됨 -->
+<!-- SQL문에 ; 찍지마라.. -->
+  <insert id="insertStudent">
+  	INSERT INTO STUDENT VALUES(SEQ_STUDENT.NEXTVAL, '장우영', '01031313131', '11111@1111.com', '서울', DEFAULT)
+  </insert> 
 </mapper>
