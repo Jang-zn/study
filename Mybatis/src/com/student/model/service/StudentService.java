@@ -3,7 +3,7 @@ package com.student.model.service;
 import org.apache.ibatis.session.SqlSession;
 
 import com.student.model.dao.StudentDao;
-import com.student.common.SQLSessionTemplate.*;
+import static com.student.common.SqlSessionTemplate.*;
 
 public class StudentService {
 	private StudentDao dao = new StudentDao();
@@ -13,9 +13,14 @@ public class StudentService {
 	
 	public int insertStudent () {
 		//Connection 갖다가 써야됨
-		
-		int result = dao.insertStudent();
 		SqlSession session = getSession();
+		int result = dao.insertStudent(session);
+		if(result>0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
 		return result;
 	}
 }
