@@ -47,7 +47,8 @@
 			<form action="${path}/selectStudentOne">
 				<input type="number" name="no">
 				<input type="submit" value="조회">
-			</form>
+			</form><br>
+			<a href="${path}/selectStudentMap?no=1">map으로 조회</a><br>
 		</li>
 		<li> 여러 row 가져오기<br>
 		<a href="${path}/selectStudentAll">전체 학생 조회</a><br>

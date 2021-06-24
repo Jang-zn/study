@@ -1,6 +1,7 @@
 package com.student.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -44,6 +45,10 @@ public class StudentDao {
 	}
 	public List<Student> selectStudentAll(SqlSession session) {
 		List<Student> result=session.selectList("student.selectStudentAll"); 
+		return result;
+	}
+	public List<Map> selectStudentMap(SqlSession session) {
+		List<Map> result=session.selectList("student.selectStudentMap"); 
 		return result;
 	}
 }
