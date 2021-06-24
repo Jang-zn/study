@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="employee">
 	<resultMap type="com.employee.model.vo.Employee" id="employeeRS">
-		<id property="" column=""></id>
-		<result property="empId" column="EMP_ID"></result>
+		<id property="empId" column="EMP_ID"></id>
 		<result property="empName" column="EMP_NAME"></result>
 		<result property="empNo" column="EMP_NO"></result>
 		<result property="email" column="EMAIL"></result>
@@ -18,8 +17,8 @@
 		<result property="entDate" column="ENT_DATE"></result>
 		<result property="entYn" column="ENT_YN"></result>
 	</resultMap>
-	<insert id="selectEmpAll">
+	<select id="selectEmpAll" resultMap="employeeRS">
 		SELECT * FROM EMPLOYEE
-	</insert>
+	</select>
   
 </mapper>

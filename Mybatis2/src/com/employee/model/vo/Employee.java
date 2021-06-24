@@ -1,7 +1,7 @@
 package com.employee.model.vo;
 
 import java.util.Date;
-
+	//lombok - vo의 getter / setter / tostring / hashcode / equals를 overriding해주는 library
 public class Employee {
 	private int empId;
 	private String empName;
