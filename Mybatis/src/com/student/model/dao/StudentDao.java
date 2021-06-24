@@ -1,5 +1,7 @@
 package com.student.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.student.model.vo.Student;
@@ -38,6 +40,10 @@ public class StudentDao {
 	}
 	public Student selectStudentOne(SqlSession session, int no) {
 		Student result=session.selectOne("student.selectStudentOne",no); 
+		return result;
+	}
+	public List<Student> selectStudentAll(SqlSession session) {
+		List<Student> result=session.selectList("student.selectStudentAll"); 
 		return result;
 	}
 }

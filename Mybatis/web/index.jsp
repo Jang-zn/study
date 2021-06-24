@@ -48,9 +48,9 @@
 				<input type="number" name="no">
 				<input type="submit" value="조회">
 			</form>
-			
 		</li>
 		<li> 여러 row 가져오기<br>
+		<a href="${path}/selectStudentAll">전체 학생 조회</a><br>
 		
 		</li>
 		<li> 여러 row중 부분을 가져오기(ex: paging)<br>
