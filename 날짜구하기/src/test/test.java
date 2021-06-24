@@ -8,6 +8,8 @@ public class test {
 		
 		Calendar cal = Calendar.getInstance();
 		int last = cal.getActualMaximum(cal.DAY_OF_MONTH); //월 길이 (length로 사용)
+		int today = cal.get(cal.DATE);
+		System.out.println(last-today+1);
 		
 		
 		int y = cal.get(cal.YEAR);
