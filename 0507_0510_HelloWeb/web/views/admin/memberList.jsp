@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file = "../common/header.jsp" %>
 <%@ page import="java.util.*" %>
-<% List<Member> list = (List<Member>)request.getAttribute("memberList"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <style type="text/css">
     section#memberList-container {text-align:center;}
@@ -18,36 +19,36 @@
     	color : black;
     }
     </style>
-    
+    <c:set var="path" value="${pageContext.request.contextPath }"/>
     <section id="memberList-container">
         <h2>회원관리</h2>
 	    <div id = "search-container">
 	        	검색타입 : 
 	        	<select id="searchType">
-	        		<option value="userId" <%= request.getParameter("searchType")!=null&&request.getParameter("searchType").equals("userId")? "selected" : ""%>>아이디</option>
-	        		<option value="userName" <%= request.getParameter("searchType")!=null&&request.getParameter("searchType").equals("userName")? "selected" : ""%>>회원이름</option>
-	        		<option value="gender" <%= request.getParameter("searchType")!=null&&request.getParameter("searchType").equals("gender")? "selected" : ""%>>성별</option>
+	        		<option value="userId" <c:out value="${param.searchType!=null&&param.searchType eq 'userId'?'selected':''}"/>>아이디</option>
+	        		<option value="userName" <c:out value="${param.searchType!=null&&param.searchType eq 'userName'?'selected':''}"/>>회원이름</option>
+	        		<option value="gender" <c:out value="${param.searchType!=null&&param.searchType eq 'gender'?'selected':''}"/>>성별</option>
 	        	</select>
 	       	<div id = "search-userId">
-	       		<form action="<%=request.getContextPath() %>/admin/searchMemberList" method="post">
-	       			<input type="text" name="searchKeyword" size="25" placeholder="검색할 아이디를 입력해주세요" 
-	       			 value="<%=request.getParameter("searchKeyword")!=null&&request.getParameter("searchType").equals("userId")?request.getParameter("searchKeyword"):""%>">
+	       		<form action="<c:out value='${path}/admin/searchMemberList'/> method="post">
+	       			<input type="text" name="searchKeyword" size="25" placeholder="검색할 아이디를 입력해주세요"
+	       			 value="<c:out value="${param.searchKeyword!=null&&param.searchType eq 'userId' ? '${param.searchKeyword}':''}"/>"> 
 	       			<input type="hidden" name="searchType" value="userId">
 	       			<button type="submit">조회</button>
 	       		</form>
 	       	</div>
 	       	<div id = "search-userName">
-	       		<form action="<%=request.getContextPath() %>/admin/searchMemberList" method="post">
+	       		<form action="<c:out value='${path}/admin/searchMemberList'/> method="post">
 	       			<input type="text" name="searchKeyword" size="25" placeholder="검색할 이름을 입력해주세요"
-	       			 value="<%=request.getParameter("searchKeyword")!=null&&request.getParameter("searchType").equals("userName")?request.getParameter("searchKeyword"):""%>">
+	       			 value="<c:out value="${param.searchKeyword!=null&&param.searchType eq 'userName' ? '${param.searchKeyword}':''}"/>">
 	       			<input type="hidden" name="searchType" value="userName">
 	       			<button type="submit">조회</button>
 	       		</form>
 	       	</div>
 	       	<div id = "search-gender">
-	       		<form action="<%=request.getContextPath() %>/admin/searchMemberList" method="post">
-	       			<label><input type="radio" name="searchKeyword" value="M" <%=request.getParameter("searchKeyword")!=null&&request.getParameter("searchType").equals("gender")&&request.getParameter("searchKeyword").equals("M")?"checked":""%>>남</label>
-	       			<label><input type="radio" name="searchKeyword" value="F" <%=request.getParameter("searchKeyword")!=null&&request.getParameter("searchType").equals("gender")&&request.getParameter("searchKeyword").equals("F")?"checked":""%>>여</label>
+	       		<form action="<c:out value='${path}/admin/searchMemberList'/> method="post">
+	       			<label><input type="radio" name="searchKeyword" value="M" <c:out value="${param.searchKeyword!=null&&param.searchType eq 'gender' && param.searchKeyword eq 'M'? 'checked':''}"/>>남</label>
+	       			<label><input type="radio" name="searchKeyword" value="F" <c:out value="${param.searchKeyword!=null&&param.searchType eq 'gender' && param.searchKeyword eq 'F'? 'checked':''}"/>>여</label>
 	       			<input type="hidden" name="searchType" value="gender">
 	       			<button type="submit">조회</button>
 	       		</form>
@@ -79,40 +80,42 @@
                 </tr>
             </thead>
             <tbody>
-       		<%if(list.size()==0){ %>
-       			<tr>
-       			<td colspan="9" style="color:red;">조회된 결과가 없습니다.</td>
+            <c:if test="${list.size()==0}">
+	            <tr>
+    	   			<td colspan="9" style="color:red;">조회된 결과가 없습니다.</td>
        			</tr>
-       		<%}else{%>
-       			<% for(Member m : list){%>
-       				<tr>
-       				<td><%=m.getUserId() %></td>
-		    		<td><%=m.getUserName() %></td>
-		    		<td><%=m.getGender() %></td>
-		    		<td><%=m.getAge() %></td>
-		    		<td><%=m.getEmail() %></td>
-		    		<td><%=m.getPhone() %></td>
-		    		<td><%=m.getAddress() %></td>
-		    		<td><%=m.getHobby() %></td>
-		    		<td><%=m.getEnrollDate() %></td>
-       				</tr>
-       			<%} %>
-       		<%} %>
+            </c:if>
+       		<c:if test="${list.size()!=0}">
+       			<c:forEach var="m" items="${memberList}">
+	            	<tr>
+    	   			<td><c:out value="${m.userId }"/></td>
+    	   			<td><c:out value="${m.userName }"/></td>
+    	   			<td><c:out value="${m.gender }"/></td>
+    	   			<td><c:out value="${m.age }"/></td>
+    	   			<td><c:out value="${m.email }"/></td>
+    	   			<td><c:out value="${m.phone }"/></td>
+    	   			<td><c:out value="${m.address }"/></td>
+    	   			<td><c:out value="${m.hobby }"/></td>
+    	   			<td><c:out value="${m.enrollDate }"/></td>
+	       			</tr>
+	       		</c:forEach>
+            </c:if>
             </tbody>
         </table>
         <div id="pageBar">
-        	<%=request.getAttribute("pageBar") %>
+        	<c:out value="${pageBar}" escapeXml="false"/>
         </div>
     </section>
     <script>
     
     	$(function(){
-			$(#"serachType").change();
+			$("#serachType").change();
 		});
     	
 		
 		$("#searchType").change(e=>{
 			let sort = $("#searchType").val();
+			console.log(sort);
     		switch(sort){
     			case "userId" : $("#search-userId").css("display","inline-block");
     							$("#search-userName").css("display","none");
