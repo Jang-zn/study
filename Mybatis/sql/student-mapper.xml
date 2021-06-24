@@ -34,4 +34,7 @@
   <select id="selectStudentOne" resultMap="studentRS">
   	SELECT * FROM STUDENT WHERE STUDENT_NO=#{no}
   </select>
+  <select id="selectStudentAll" resultMap="studentRS">
+  	SELECT * FROM STUDENT
+  </select>
 </mapper>
