@@ -18,6 +18,7 @@ public class EmployeeService {
 	public List<Employee> selectEmpAll(){
 		SqlSession session = getSession();
 		List<Employee> list = dao.selectEmpAll(session);
+		session.close();
 		return list;
 	}
 }
