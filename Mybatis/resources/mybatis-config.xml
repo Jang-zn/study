@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!-- environment : db에 대한 정보를 설정 -->
+	<!-- default는 여러 environment 중 default값이 될 environment의 id값을 준다. -->
+	<environments default="dev">
+		<environment id="dev">
+			<transactionManager type="JDBC"/>
+			<!-- dataSource : connection을 생성하기 위한 정보가 포함됨 -> key:value 형식으로 값을 setting -->
+			<!-- type="POOLED" : 일련의 세션을 관리하기 위한 방식을 결정->POOLED(한번 생성해놓고 갖다씀) / UNPOOLED(매번 새로 생성함)  -->
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<property name="username" value="student"/>
+				<property name="password" value="student"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="student-mapper.xml"/>
+	</mappers>
+</configuration>
+
