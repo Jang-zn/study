@@ -28,6 +28,8 @@
   <delete id="deleteStudentInfo" parameterType="int">
   	DELETE FROM STUDENT WHERE STUDENT_NO=#{no}
   </delete>
+  
+  
   <select id="studentCount" resultType="int">
   	SELECT COUNT(STUDENT_NO) FROM STUDENT
   </select>
@@ -37,4 +39,10 @@
   <select id="selectStudentAll" resultMap="studentRS">
   	SELECT * FROM STUDENT
   </select>
+  <select id="selectStudentMap" resultType="map">
+  	SELECT * FROM STUDENT
+  </select>
+  
+  <!-- 동적 QUERY : 하나의 QUERY문에 WHERE 조건만 바꿔서 여러가지로 활용 가능 -->
+  <!-- PARAMETER가지고 조건문을 걸어버린다. -->
 </mapper>

@@ -3,6 +3,7 @@ package com.student.model.service;
 import static com.student.common.SqlSessionTemplate.getSession;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -90,6 +91,12 @@ public class StudentService {
 	public List<Student> selectStudentAll() {
 		SqlSession session = getSession();
 		List<Student> result = dao.selectStudentAll(session);
+		session.close();
+		return result;
+	}
+	public List<Map> selectStudentMap() {
+		SqlSession session = getSession();
+		List<Map> result = dao.selectStudentMap(session);
 		session.close();
 		return result;
 	}
