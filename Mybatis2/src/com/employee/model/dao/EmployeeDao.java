@@ -13,7 +13,6 @@ public class EmployeeDao {
 	
 	public List<Employee> selectEmpAll(SqlSession session){
 		return session.selectList("employee.selectEmpAll");
-		
 	}
 	
 }
