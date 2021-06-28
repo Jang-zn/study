@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.employee.model.vo.Employee;
+import com.employee.model.vo.Employee2;
 
 public class EmployeeDao {
 	public EmployeeDao() {
@@ -27,6 +28,10 @@ public class EmployeeDao {
 	
 	public int selectEmpCount(SqlSession session){
 		return session.selectOne("employee.selectEmpCount");
+	}
+	
+	public Employee2 selectOneEmp(SqlSession session, int no){
+		return session.selectOne("employee.selectOneEmp",no);
 	}
 	
 }

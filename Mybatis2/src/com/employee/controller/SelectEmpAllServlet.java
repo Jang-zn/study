@@ -58,7 +58,7 @@ public class SelectEmpAllServlet extends HttpServlet {
 		}
 		while(!(pageNo>pageEnd || pageNo>totalPage)) {
 			if(cPage==pageNo) {
-				pageBar+="<li class=''page-item active'>";
+				pageBar+="<li class='page-item active'>";
 				pageBar+="<a class='page-link'>"+pageNo+"</a>";
 				pageBar+="</li>";
 			}else {

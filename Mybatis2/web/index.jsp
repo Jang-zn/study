@@ -17,6 +17,9 @@
 		<li><h3>전체조회</h3>
 			<a href="${path}/selectEmpAll">조회</a>
 		</li>
+		<li><h3>사원 조회</h3>
+			<a href="${path}/selectOneEmp?no=200">조회</a>
+		</li>
 	</ul>
 </body>
 </html>

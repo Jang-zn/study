@@ -18,6 +18,23 @@
 		<result property="entYn" column="ENT_YN"></result>
 		<result property="gender" column="GENDER"></result>
 	</resultMap>
+	
+	<resultMap type="com.employee.model.vo.Employee2" id="emp2RS">
+		<id column = "EMP_ID" property="empId"/>
+		<result column="EMP_NAME" property="empName"/>
+		<result column="EMP_NO" property="empNo"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SALARY" property="salary"/>
+		<result column="BONUS" property="bonus"/>
+		<association property="dept" javaType="com.employee.model.vo.Department">
+			<id column="DEPT_ID" property="deptId"/>
+			<result column="DEPT_TITLE" property="deptTitle"/>
+			<result column="LOCATION_ID" property="locationId"/>
+		</association> 
+		
+	</resultMap>
+	
 	<select id="selectEmpAll" resultMap="employeeRS" >
 		SELECT * 
 		FROM (SELECT E.*, DECODE(SUBSTR(EMP_NO, 8, 1),'1','M','3','M','2','F','4','F') AS GENDER FROM EMPLOYEE E)
@@ -58,5 +75,10 @@
 		</where>
 	</select>
   	<!-- 너무 한개 쿼리에서 조건 여러개 걸고 selec까지 손대거나 뭐 그러면 헷갈리니까 적당히 나눠줄 필요도 있음 -->
-  	
+  	<select id="selectOneEmp" resultMap="emp2RS">
+  		SELECT * 
+  		FROM EMPLOYEE 
+  			JOIN DEPARTMENT ON DEPT_CODE=DEPT_ID
+  		WHERE EMP_ID=#{no}
+  	</select>
 </mapper>

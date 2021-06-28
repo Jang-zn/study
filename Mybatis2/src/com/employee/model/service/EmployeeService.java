@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.employee.model.dao.EmployeeDao;
 import com.employee.model.vo.Employee;
+import com.employee.model.vo.Employee2;
 
 public class EmployeeService {
 	private EmployeeDao dao = new EmployeeDao();
@@ -36,4 +37,12 @@ public class EmployeeService {
 		session.close();
 		return list;
 	}
+	
+	public Employee2 selectOneEmp(int no) {
+		SqlSession session = getSession();
+		Employee2 e = dao.selectOneEmp(session, no);
+		session.close();
+		return e;
+	}
+	
 }
