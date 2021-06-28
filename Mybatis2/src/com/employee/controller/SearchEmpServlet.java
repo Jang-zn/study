@@ -39,11 +39,33 @@ public class SearchEmpServlet extends HttpServlet {
 		data.put("key", request.getParameter("searchKeyword"));
 		data.put("gender", request.getParameter("gender"));
 		data.put("salary", request.getParameter("salary"));
+		data.put("hireDate", request.getParameter("hireDate"));
 		String lege = request.getParameter("le_ge");
-		switch(lege) {
-			case "le":	data.put("lege", "<="); break;
-			case "ge":	data.put("lege", ">="); break;
+		String dlege = request.getParameter("d_le_ge");
+		String[] jc = request.getParameterValues("jobCode");
+		String jobCode="";
+		for(int i=0;i<jc.length;i++) {
+			if(i!=jc.length-1) {
+				jobCode+="'"+jc[i]+"', ";
+			}else {
+				jobCode+="'"+jc[i]+"'";
+			}
 		}
+		data.put("jobCode", jobCode);
+		if(lege!=null) {
+			switch(lege) {
+				case "le":	data.put("lege", "<="); break;
+				case "ge":	data.put("lege", ">="); break;
+			}
+		}
+		if(dlege!=null) {
+			switch(dlege) {
+			case "le":	data.put("dlege", "<="); break;
+			case "ge":	data.put("dlege", ">="); break;
+			}
+		}
+		
+		
 		List<Employee> list = new EmployeeService().selectEmp(data);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/empList.jsp").forward(request, response);

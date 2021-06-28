@@ -8,6 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -34,6 +45,21 @@
 				<td>급여 : <input type="number" name="salary" step="100000" min="1000000"></td>
 				<td><label><input type="radio" name="le_ge" value="le">이하</label>
 				<label><input type="radio" name="le_ge" value="ge">이상</label></td>
+			</tr>
+			<tr>
+				<td>입사일 : <input type="date" name="hireDate"></td>
+				<td><label><input type="radio" name="d_le_ge" value="le">이하</label>
+				<label><input type="radio" name="d_le_ge" value="ge">이상</label></td>
+			</tr>
+			<tr>
+				<td>직책조회</td>
+				<td><label><input type="checkbox" name="jobCode" value="J1">대표</label></td>
+				<td><label><input type="checkbox" name="jobCode" value="J2">부사장</label></td>
+				<td><label><input type="checkbox" name="jobCode" value="J3">부장</label></td>
+				<td><label><input type="checkbox" name="jobCode" value="J4">차장</label></td>
+				<td><label><input type="checkbox" name="jobCode" value="J5">과장</label></td>
+				<td><label><input type="checkbox" name="jobCode" value="J6">대리</label></td>
+				<td><label><input type="checkbox" name="jobCode" value="J7">사원</label></td>
 			</tr>
 			<tr>
 				<td>
@@ -77,7 +103,7 @@
 				<td><c:out value="${e.jobCode}"/></td>
 				<td><c:out value="${e.salLevel}"/></td>
 				<td><fmt:formatNumber type="currency" value="${e.salary}"/></td>
-				<td><c:out value="${e.bonus}"/></td>
+				<td><fmt:formatNumber type="percent" value="${e.bonus}"/></td>
 				<td><c:out value="${e.managerId}"/></td>
 				<td><fmt:formatDate type="date" value="${e.hireDate}"/></td>
 				<td><fmt:formatDate type="date" value="${e.entDate}"/></td>
@@ -85,6 +111,9 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
+	<div>
+		${pageBar}
 	</div>
 </body>
 </html>

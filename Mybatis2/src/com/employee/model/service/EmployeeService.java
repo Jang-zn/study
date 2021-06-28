@@ -16,12 +16,20 @@ public class EmployeeService {
 	
 	}
 	
-	public List<Employee> selectEmpAll(){
+	public List<Employee> selectEmpAll(int cPage, int numPerpage){
 		SqlSession session = getSession();
-		List<Employee> list = dao.selectEmpAll(session);
+		List<Employee> list = dao.selectEmpAll(session, cPage, numPerpage);
 		session.close();
 		return list;
 	}
+	
+	public int selectEmpCount() {
+		SqlSession session = getSession();
+		int count = dao.selectEmpCount(session);
+		session.close();
+		return count;
+	}
+	
 	public List<Employee> selectEmp(Map<String, String> data){
 		SqlSession session = getSession();
 		List<Employee> list = dao.selectEmp(session, data);

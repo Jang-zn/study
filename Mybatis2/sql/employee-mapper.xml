@@ -19,7 +19,11 @@
 		<result property="gender" column="GENDER"></result>
 	</resultMap>
 	<select id="selectEmpAll" resultMap="employeeRS" >
-		SELECT * FROM EMPLOYEE
+		SELECT * 
+		FROM (SELECT E.*, DECODE(SUBSTR(EMP_NO, 8, 1),'1','M','3','M','2','F','4','F') AS GENDER FROM EMPLOYEE E)
+	</select>
+	<select id="selectEmpCount" resultType="int">
+		SELECT COUNT(*) FROM EMPLOYEE
 	</select>
 	<!-- #은 setString / setInt개념 $는 값에 상관없이 Literal 표기함 (''안찍고 그냥 써줌 기존 sql불러와서 replace 해주는 개념) -->
 	<!-- 제대로 구분 안하면 에러날수 있으니까 주의 -->
@@ -41,7 +45,15 @@
 			<if test="salary!=null and salary!='' and lege!=null and lege!=''">
 				AND SALARY ${lege} ${salary}
 			</if>
-			
+			<if test="hireDate!=null and hireDate!='' and dlege!=null and dlege!=''">
+				AND HIRE_DATE ${dlege} TO_DATE(#{hireDate},'YY/MM/DD')
+			</if>
+			<if test="jobCode!='' and jobCode!=null">
+				<!-- forEach collection="(items 개념)" item="(이게 변수)" index="인덱스번호" open="시작할때 넣을값" close="끝날때 넣을값" separator="구분자"-->
+				<!-- forEach collection="jobCode" item="j" open="(" close=")" separator="," 하고 태그 안에서 #{j} 찍어줌-->
+				AND JOB_CODE IN(${jobCode})
+			</if>
+			<!-- choose - when - otherwise 써도 됨 -->
 		<!-- </trim> -->
 		</where>
 	</select>
