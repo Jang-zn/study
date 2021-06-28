@@ -3,6 +3,7 @@ package com.employee.model.service;
 import static com.common.SqlSessionTemplate.getSession;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -18,6 +19,12 @@ public class EmployeeService {
 	public List<Employee> selectEmpAll(){
 		SqlSession session = getSession();
 		List<Employee> list = dao.selectEmpAll(session);
+		session.close();
+		return list;
+	}
+	public List<Employee> selectEmp(Map<String, String> data){
+		SqlSession session = getSession();
+		List<Employee> list = dao.selectEmp(session, data);
 		session.close();
 		return list;
 	}

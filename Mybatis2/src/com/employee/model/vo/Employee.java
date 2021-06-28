@@ -36,5 +36,6 @@ public class Employee {
 	private Date hireDate;
 	private Date entDate;
 	private String entYn;
+	private String gender;
 		
 }
