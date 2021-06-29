@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.employee.model.dao.EmployeeDao;
+import com.employee.model.vo.Board;
 import com.employee.model.vo.Employee;
 import com.employee.model.vo.Employee2;
 
@@ -43,6 +44,13 @@ public class EmployeeService {
 		Employee2 e = dao.selectOneEmp(session, no);
 		session.close();
 		return e;
+	}
+	
+	public Board selectBoard(int no) {
+		SqlSession session = getSession();
+		Board b = dao.selectBoard(session, no);
+		session.close();
+		return b;
 	}
 	
 }

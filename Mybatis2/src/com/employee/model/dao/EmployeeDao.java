@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
+import com.employee.model.vo.Board;
 import com.employee.model.vo.Employee;
 import com.employee.model.vo.Employee2;
 
@@ -34,4 +35,7 @@ public class EmployeeDao {
 		return session.selectOne("employee.selectOneEmp",no);
 	}
 	
+	public Board selectBoard(SqlSession session, int no){
+		return session.selectOne("employee.selectBoard",no);
+	}
 }

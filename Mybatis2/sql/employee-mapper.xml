@@ -34,7 +34,27 @@
 		</association> 
 		
 	</resultMap>
+	<resultMap type="com.employee.model.vo.Board" id="boardRS">
+		<id column="board_no" property="boardNo"/>
+		<result column="board_title" property="boardTitle"/>
+		<result column="board_Wirter" property="boardWriter"/>
+		<result column="board_content" property="boardContent"/>
+		<result column="board_date" property="boardDate"/>
+		<collection  resultMap="boardCommentRS" property="comments">
+			
+		</collection>
+	</resultMap>
+	<resultMap type="com.employee.model.vo.BoardComment" id="boardCommentRS">
+		<id column="board_comment_no" property="commentNo"/>
+		<result column="board_comment_writer" property="commentWriter"/>
+		<result column="board_comment_content" property="commentContent"/>
+		<result column="board_comment_date" property="commentDate"/>
 	
+	</resultMap>
+	<select id="selectBoard" resultMap="boardRS">
+		SELECT * FROM BOARD JOIN BOARD_COMMENT ON BOARD_NO=BOARD_REF
+		WHERE BOARD_NO=#{no}
+	</select>
 	<select id="selectEmpAll" resultMap="employeeRS" >
 		SELECT * 
 		FROM (SELECT E.*, DECODE(SUBSTR(EMP_NO, 8, 1),'1','M','3','M','2','F','4','F') AS GENDER FROM EMPLOYEE E)
