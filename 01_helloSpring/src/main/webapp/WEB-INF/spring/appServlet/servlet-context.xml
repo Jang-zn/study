@@ -11,6 +11,7 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	<!-- annotation 쓰면 찾아라 라는 태그 -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -20,9 +21,15 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	<!-- view 이름 받으면 web-inf/views/ xxx.jsp 로 바꿔주는 bean  -->
+	
+	
+	<beans:bean id="emp" class="com.kh.spring.Employee">
+	</beans:bean>
+	
 	
 	<context:component-scan base-package="com.kh.spring" />
-	
+	<!-- bean으로 등록하려면 base package 하위폴더에 만들어줘야됨 -->
 	
 	
 </beans:beans>

@@ -4,5 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean id="apple" class="com.kh.spring.Fruit">
+		<!-- 멤버변수에 값 대입 후 bean 생성
+			1. setter
+			2. 생성자
+		 -->
+		 <!-- <property name="color" value="red"/>
+		 <property name="name" value="apple"/>
+		 <property name="price" value="10000"/> -->
+		 <constructor-arg index="0" value="apple"/>
+		 <constructor-arg index="1" value="1000"/>
+		 <constructor-arg index="2" value="black"/>
+	</bean>
 </beans>
