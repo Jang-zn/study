@@ -35,8 +35,9 @@ public class HomeController {
 	@Autowired
 	private Employee emp2;
 	
-	@Autowired
+	@Autowired(required=false)
 	private Animal an;
+	//required 주면 bean 있으면 넣고 없으면 null 처리해줌
 	
 	
 	@Autowired
