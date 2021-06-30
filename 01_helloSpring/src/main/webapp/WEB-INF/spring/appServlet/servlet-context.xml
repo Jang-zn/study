@@ -23,13 +23,24 @@
 	</beans:bean>
 	<!-- view 이름 받으면 web-inf/views/ xxx.jsp 로 바꿔주는 bean  -->
 	
-	
-	<beans:bean id="emp" class="com.kh.spring.Employee">
-	</beans:bean>
-	
-	
 	<context:component-scan base-package="com.kh.spring" />
 	<!-- bean으로 등록하려면 base package 하위폴더에 만들어줘야됨 -->
+	
+	<!-- <beans:bean id="emp" class="com.kh.spring.Employee"/> -->
+	<beans:bean id="emp" class="com.kh.spring.Employee">
+		<beans:property name="name" value="Jangk"/>
+		<beans:property name="salary" value="5000000"/>
+		<beans:property name="bonus" value="0.7"/>
+		<beans:property name="dept" ref="rc"/>
+	</beans:bean>
+	<beans:bean id="rc" class="com.kh.spring.Department">
+		<beans:property name="name" value="buja"/>
+		<beans:property name="location" value="seoul"/>
+		<beans:property name="count" value="30"/>
+	</beans:bean>
+	<beans:bean id="emp2" class="com.kh.spring.Employee">
+	</beans:bean>
+	
 	
 	
 </beans:beans>

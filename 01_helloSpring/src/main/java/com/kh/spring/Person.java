@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+public class Person {
 	private String name;
-	private int salary;
-	private double bonus;
-	private Department dept;
+	private int age;
+	private String addr;
 }

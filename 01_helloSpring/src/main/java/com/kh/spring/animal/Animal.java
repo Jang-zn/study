@@ -1,15 +1,16 @@
-package com.kh.spring;
+package com.kh.spring.animal;
+
+import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+public class Animal {
 	private String name;
-	private int salary;
-	private double bonus;
-	private Department dept;
+	private int age;
 }
