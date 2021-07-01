@@ -20,22 +20,28 @@
 	<div id="demo-container">
 		<form id="devFrm" method="post">
 			<div class="form-group row">
-			<label for="devName" class="col-sm-2 col-form-label">이름</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="devName" name="devName">
-			</div>
-			</div>
-			<div class="form-group row">
-			<label for="devAge" class="col-sm-2 col-form-label">나이</label>
-			<div class="col-sm-10">
-				<input type="number" class="form-control" id="devAge" name="devAge">
-			</div>
+				<label for="devName" class="col-sm-2 col-form-label">이름</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="devName" name="devName">
+				</div>
 			</div>
 			<div class="form-group row">
-			<label for="devEmail" class="col-sm-2 col-form-label">이메일</label>
-			<div class="col-sm-10">
-				<input type="email" class="form-control" id="devEmail" name="devEmail">
+				<label for="devAge" class="col-sm-2 col-form-label">나이</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" id="devAge" name="devAge">
+				</div>
 			</div>
+			<div class="form-group row">
+				<label for="devEmail" class="col-sm-2 col-form-label">이메일</label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" id="devEmail" name="devEmail">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="birthDay" class="col-sm-2 col-form-label">생일</label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control" id="birthDay" name="birthDay">
+				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">성별</label>
@@ -71,6 +77,18 @@
 		<div class="list-group">
 			<button type="button" class="list-group-item list-group-item-action" onclick="fn_demo('basicDemo.do')">
 				HttpServletRequest Parameter
+			</button>
+			<button type="button" class="list-group-item list-group-item-action" onclick="fn_demo('reqParamDemo.do')">
+				@RequestParam 
+			</button>
+			<button type="button" class="list-group-item list-group-item-action" onclick="fn_demo('commandDemo.do')">
+				Command
+			</button>
+			<button type="button" class="list-group-item list-group-item-action" onclick="fn_demo('mapDemo.do')">
+				Map
+			</button>
+			<button type="button" class="list-group-item list-group-item-action" onclick="fn_demo('extraDemo.do')">
+				추가정보 가져오기
 			</button>
 		</div>
 	</div>
