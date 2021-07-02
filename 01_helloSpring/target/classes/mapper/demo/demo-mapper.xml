@@ -5,8 +5,12 @@
   		INSERT INTO DEV 
   		VALUES(
   			SEQ_DEV_NO.NEXTVAL, #{devName}, #{devAge}, #{devEmail}, #{devGender}, 
-  		<foreach collection="devLang" item="l" open="'" close="'" separator=",">${l}</foreach>
+  		<!-- <foreach collection="devLang" item="l" open="'" close="'" separator=",">${l}</foreach> -->
   		<!-- 와 이거 알아도 잘 안쓸거같다 시발 -->
+  			#{devLang, typeHandler=com.kh.spring.common.StringArrayTypeHandler}
+  			<!-- typehandler 구현하고 적용함 -->
   		)
+  		<!--mybatis typeHandler 이용해서 배열에 대한거 지정해주면 걍 한방에 넣고빼고 가능-->
   	</insert>
+  	
 </mapper>

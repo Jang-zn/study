@@ -125,7 +125,7 @@ public class DemoController {
 	public String insertDemo(Dev dev, Model m) {
 		int result = service.insertDemo(dev);
 		m.addAttribute("msg", result>0?"성공":"실패");
-		m.addAttrivute("loc","/demo/demo.do");
+		m.addAttribute("loc","/demo/demo.do");
 		return "common/msg";
 	}
 	
