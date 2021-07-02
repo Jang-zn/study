@@ -38,12 +38,6 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="birthDay" class="col-sm-2 col-form-label">생일</label>
-				<div class="col-sm-10">
-					<input type="date" class="form-control" id="birthDay" name="birthDay">
-				</div>
-			</div>
-			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">성별</label>
 				<div class="col-sm-10">
 					<div class="form-check form-check-inline">
@@ -89,6 +83,9 @@
 			</button>
 			<button type="button" class="list-group-item list-group-item-action" onclick="fn_demo('extraDemo.do')">
 				추가정보 가져오기
+			</button>
+			<button type="button" class="list-group-item list-group-item-action" onclick="fn_demo('insertDemo.do')">
+				Demo 정보 입력
 			</button>
 		</div>
 	</div>
