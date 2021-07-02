@@ -18,16 +18,17 @@
 		</tr>
 		<c:forEach var="d" items="${dev}">
 		<tr>
-			<td><c:out value="${d.devNo}"/></td>
-			<td><c:out value="${d.devName}"/></td>
-			<td><c:out value="${d.devAge}"/></td>
-			<td><c:out value="${d.devEmail}"/></td>
-			<td><c:out value="${d.devGender}"/></td>
-			<td><c:forEach var="l" items="${d.devLang}" varStatus="ls">
-				<c:out value="${l}"/>
-				<c:if test="${not ls.last}">
-					,
-				</c:if>
+			<td scope="col"><c:out value="${d.devNo}"/></td>
+			<td scope="col"><c:out value="${d.devName}"/></td>
+			<td scope="col"><c:out value="${d.devAge}"/></td>
+			<td scope="col"><c:out value="${d.devEmail}"/></td>
+			<td scope="col"><c:out value="${d.devGender}"/></td>
+			<td scope="col">
+				<c:forEach var="l" items="${d.devLang}" varStatus="ls">
+					<c:out value="${l}"/>
+					<c:if test="${not ls.last}">
+						,
+					</c:if>
 				</c:forEach>
 			</td>
 		</tr>
