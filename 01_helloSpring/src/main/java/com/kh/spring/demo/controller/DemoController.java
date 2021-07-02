@@ -1,5 +1,6 @@
 package com.kh.spring.demo.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +128,14 @@ public class DemoController {
 		m.addAttribute("msg", result>0?"성공":"실패");
 		m.addAttribute("loc","/demo/demo.do");
 		return "common/msg";
+	}
+	
+	
+	@RequestMapping("/demo/demoList.do")
+	public String selectDemoList(Model m) {
+		List<Dev> result = service.selectDemoList();
+		m.addAttribute("dev",result);
+		return "demo/list";
 	}
 	
 }

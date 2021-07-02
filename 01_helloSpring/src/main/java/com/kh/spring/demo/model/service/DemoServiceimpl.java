@@ -1,5 +1,7 @@
 package com.kh.spring.demo.model.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +26,11 @@ public class DemoServiceimpl implements DemoService {
 		//여러개면 수동으로 묶어주고 처리하면 됨
 		return result;
 	}
-
+	
+	@Override
+	public List<Dev> selectDemoList() {
+		List<Dev> result = dao.selectDemoList(session);
+		return result;
+	}
+	
 }
