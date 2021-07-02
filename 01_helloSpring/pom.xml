@@ -142,7 +142,38 @@
 		    <version>1.18.12</version>
 		    <scope>provided</scope>
 		</dependency>
-				        
+		<!-- DB접속용 연결 -->
+		<!-- 
+			1. mybatis
+			2. mybatis-spring
+			3. commons-dbcp
+			4. spring-jdbc
+			5. ojdbc - maven이 불러오면 에러나서 알아서 설치해줘야됨
+		 -->
+		 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.4.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
+				<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+		<dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>1.4</version>
+		</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
