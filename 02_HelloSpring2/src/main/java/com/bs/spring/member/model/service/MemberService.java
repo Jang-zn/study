@@ -9,4 +9,8 @@ public interface MemberService {
 	public Member loginMember(Map param);
 	
 	public int insertMember(Member member);
+	
+	public int updateMember(Member member);
+	
+	public int deleteMember(Member member);
 }

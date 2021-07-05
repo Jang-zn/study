@@ -5,11 +5,18 @@
 		<result column="hobby" property="hobby" typeHandler="strArr"/>
 	</resultMap>
 	<select id="selectOneMember" resultMap="memberMap"> 
-		SELECT * FROM MEMBER WHERE USERID=#{userId} AND PASSWORD=#{password}
+		SELECT * FROM MEMBER WHERE USERID=#{userId}
 	</select>
 	<insert id="insertMember"> 
 		INSERT INTO MEMBER VALUES
 		(#{userId},#{password},#{userName},#{gender},#{age},#{email},#{phone},#{address},
 		#{hobby, typeHandler=strArr},SYSDATE)
 	</insert>
+	<update id="updateMember"> 
+		UPDATE MEMBER SET USERNAME=#{userName},GENDER=#{gender},AGE=#{age},EMAIL=#{email},PHONE=#{phone},
+		ADDRESS=#{address}, HOBBY=#{hobby, typeHandler=strArr}
+	</update>
+	<delete id="deleteMember"> 
+		DELETE MEMBER WHERE MEMBERID=#{memberId}
+	</delete>
 </mapper>

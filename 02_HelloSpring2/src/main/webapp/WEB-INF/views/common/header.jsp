@@ -69,7 +69,7 @@
 						</c:when>
 						<c:otherwise>
 							<span>
-							<a href=""><c:out value="${login.userName}"/></a>님 환영합니다.
+							<a href="${path}/member/mypage.do"><c:out value="${login.userName}"/></a>님 환영합니다.
 							</span>
 							&nbsp;&nbsp;
 							<button class="btn btn-outline-success my2 my-sm-0" type="button" onclick="fn_logout();">

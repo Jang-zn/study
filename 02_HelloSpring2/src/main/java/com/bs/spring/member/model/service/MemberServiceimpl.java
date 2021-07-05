@@ -30,7 +30,14 @@ public class MemberServiceimpl implements MemberService {
 		return dao.insertMember(session, member);
 	}
 	
+	@Override
+	public int updateMember(Member member) {
+		return dao.updateMember(session, member);
+	}
 	
-	
+	@Override
+	public int deleteMember(Member member) {
+		return dao.deleteMember(session, member);
+	}
 	
 }

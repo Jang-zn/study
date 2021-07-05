@@ -20,6 +20,13 @@ public class MemberDaoimpl implements MemberDao{
 		return session.insert("member.insertMember", member);
 	}
 
+	@Override
+	public int updateMember(SqlSessionTemplate session, Member member) {
+		return session.update("member.updateMember", member);
+	}
 	
-	
+	@Override
+	public int deleteMember(SqlSessionTemplate session, Member member) {
+		return session.delete("member.deleteMember", member);
+	}
 }
