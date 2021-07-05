@@ -4,7 +4,7 @@
 	<resultMap id="memberMap" type="member">
 		<result column="hobby" property="hobby" typeHandler="strArr"/>
 	</resultMap>
-	<select id="loginMember" resultMap="memberMap"> 
+	<select id="selectOneMember" resultMap="memberMap"> 
 		SELECT * FROM MEMBER WHERE USERID=#{userId} AND PASSWORD=#{password}
 	</select>
 	<insert id="insertMember"> 
