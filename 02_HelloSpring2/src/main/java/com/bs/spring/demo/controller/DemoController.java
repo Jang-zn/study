@@ -174,7 +174,6 @@ public class DemoController {
 		m.addAttribute("list",list);
 		return "demo/demoList";
 	}
-	
 }
 
 
