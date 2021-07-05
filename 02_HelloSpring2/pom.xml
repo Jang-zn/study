@@ -159,6 +159,27 @@
     <version>1.4</version>
 </dependency>
 
+<!-- 단방향 암호화용 spring security 적용
+	spring-security-core / web / config 세개
+ -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
 		
 		        
 	</dependencies>
