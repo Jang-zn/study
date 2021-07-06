@@ -72,7 +72,7 @@
 				<br>
 				
 				<input type="submit" class="btn btn-outline-success" value="개인정보 수정" >&nbsp;
-				<input type="button" class="btn btn-outline-success" onclick="" value="비밀번호 변경" >&nbsp;
+				<input type="button" class="btn btn-outline-success" onclick="updatePassword();" value="비밀번호 변경" >&nbsp;
 				<input type="button" class="btn btn-outline-success" onclick="deleteMember();" value="탈퇴하기">
 			</form>
 		</div>
