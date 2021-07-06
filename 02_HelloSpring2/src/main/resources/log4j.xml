@@ -56,6 +56,15 @@
 		
 		
 	</appender>
+	<!-- 일단위 파일 기록 -->
+	<appender name="fileLogger" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="c:logs/spring.log"/>
+		<param name="append" value="true"/> <!-- 파일 일단위 추가 -->
+		<param name="datePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p [%l] - %m%n"/>
+		</layout>
+	</appender>
 	
 	<!-- 출력레벨 : debug > info > warn > error > fatal -->
 	<!-- 지정된 레벨보다 높은건 출력 안함-->
@@ -88,6 +97,8 @@
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
+		<!--  -->
+		<appender-ref ref="fileLogger"/>
 	</root>
 	
 </log4j:configuration>

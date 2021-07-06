@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.bs.spring.demo.model.service.DemoService;
 import com.bs.spring.demo.model.vo.Dev;
@@ -32,6 +33,7 @@ public class DemoController {
 		return "demo/demo";
 		//request.getRequest.Dispatcher("/WEB-INF/views/demo/demo.jsp").forward()
 	}
+	
 	
 	/* 스프링에서 파라미터값을 처리하는 방법 -> 맵핑매소드의 매개변수에 대해 알아보자.
 	 * 스프링에서는 프론트에서 전송되는 데이터를 맵핑매소드의 매개변수로 받을 수 있음.
