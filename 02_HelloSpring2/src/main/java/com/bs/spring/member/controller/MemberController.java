@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,8 +18,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.bs.spring.member.model.service.MemberService;
 import com.bs.spring.member.model.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @SessionAttributes({"login"})
+//annotation으로 log4j 등록 - 이거 하면 log 로 생김 - lombok에서 지원하는거임
+@Slf4j
 public class MemberController {
 	@Autowired
 	private MemberService ms;
@@ -25,12 +31,16 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
+	//private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
 	
 	@RequestMapping("/member/memberLogin.do")
 	public String loginMember(@RequestParam Map param, Model m, HttpSession session) {
 		Member member = ms.loginMember(param);
 		//입력받은 pw랑 암호화된 pw랑 비교해주는 matches 메소드 사용
 		//매개변수는 입력받은값, 암호화된값
+		log.debug("비밀번호 : {}",param.get("password"));
+		log.debug("암호화 : {}",member.getPassword());
 		String location="";
 		if(member!=null) {
 			boolean check = pwEncoder.matches((String)param.get("password"), member.getPassword());

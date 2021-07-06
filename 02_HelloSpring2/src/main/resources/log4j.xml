@@ -13,10 +13,12 @@
 			XMLLayout : 로그를 xml 방식으로 출력
 			PatternLayout : 패턴 줘서 출력 가능
 		 -->
-		
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p [%l] - %m%n"/>
 		</layout>
+		<!-- <layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout> -->
 		<!-- <layout class="org.apache.log4j.SimpleLayout">
 		</layout> -->
 		<!-- <layout class="org.apache.log4j.HTMLLayout">
@@ -25,13 +27,14 @@
 		</layout> -->
 		<!-- 
 		기본 패턴설정 : %-5p: %c - %m%n
-			이벤트명, 카테고리명, 로그전달메세지 개행
+			이벤트명, 카테고리명(패키지), 로그전달메세지(%m) 개행(%n)
 
 		* %c : 카테고리명(logger이름)을 표시
 			* 카테고리명이 a.b.c일때, %c{2}는 b.c를 출력
 		* %C : 클래스명을 표시함.	
 			* 풀 클래스 명이 com.kh.logger일때, %C{2}는 kh.logger를 출력
 		* %d : 로그 시간을 출력한다. java.text.SimpleDateFormat에서 적절한 출력 포맷을 지정할 수 있다. 
+				SimpleDateFormat하고 똑같음 
 			* %d{HH:mm:ss, SSS}
 			* %d{yyyy MMM dd HH:mm:ss, SSS}
 			* %d{ABSOLUTE} 
