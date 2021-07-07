@@ -28,7 +28,9 @@ public void postHandle(HttpServletRequest request, HttpServletResponse response,
 	}
 	
 }
-	
+	//preHandle 로 그냥 dispatcher forward 해도 되네..? 왜시발 안됐냐
+
+
 	
 
 	

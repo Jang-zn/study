@@ -66,6 +66,24 @@
 		</layout>
 	</appender>
 	
+	
+	<!-- log4jdbc 설정 -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p [%l] - %m%n"/>
+		</layout>
+	</appender>
+	
+	<logger name="jdbc.sqlonly" addtivity="false">
+		<level value="info"/>
+		<appender-ref ref="sqlconsole"/>
+	</logger>
+	<logger name="jdbc.resultsettable" addtivity="false">
+		<level value="info"/>
+		<appender-ref ref="sqlconsole"/>
+	</logger>
+	
 	<!-- 출력레벨 : debug > info > warn > error > fatal -->
 	<!-- 지정된 레벨보다 높은건 출력 안함-->
 	
