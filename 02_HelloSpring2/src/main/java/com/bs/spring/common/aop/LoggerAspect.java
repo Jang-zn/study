@@ -2,6 +2,7 @@ package com.bs.spring.common.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.Aspect;
 
 import lombok.extern.slf4j.Slf4j;
 

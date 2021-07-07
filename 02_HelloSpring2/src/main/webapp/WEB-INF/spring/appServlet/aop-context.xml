@@ -5,7 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
-	<!-- aop설정 -->
+	<!-- aop설정 
+		Annotation으로 aop 설정해도 찾아갈수 있게 <aop:aspectj-autoproxy/> 써줘야됨
+	-->
 	<bean id="loggerAspect" class="com.bs.spring.common.aop.LoggerAspect"/>
 	<aop:config>
 		<aop:aspect ref="loggerAspect">
@@ -13,4 +15,5 @@
 			<aop:before method="logTest" pointcut-ref="logPc"/>
 		</aop:aspect>
 	</aop:config>
+	<aop:aspectj-autoproxy/>
 </beans>

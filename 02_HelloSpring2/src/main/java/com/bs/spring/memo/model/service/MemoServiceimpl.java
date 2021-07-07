@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bs.spring.memo.model.dao.MemoDaoimpl;
+import com.bs.spring.memo.model.dao.MemoDao;
 import com.bs.spring.memo.model.vo.Memo;
 
 @Service
@@ -17,7 +17,7 @@ public class MemoServiceimpl implements MemoService{
 	
 	
 	@Autowired
-	MemoDaoimpl dao;
+	MemoDao dao;
 	
 	
 	public int memoInsert(Memo memo) {

@@ -42,6 +42,12 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
 		
 		<!-- log 관련 jar
 			설정파일(log4j.xml) 기반으로 Logger(slf4기반) 클래스의 명령어로 log 출력
