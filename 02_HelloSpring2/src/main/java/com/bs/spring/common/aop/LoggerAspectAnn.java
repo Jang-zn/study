@@ -1,5 +1,7 @@
 package com.bs.spring.common.aop;
 
+import javax.servlet.http.HttpSession;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -10,6 +12,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +38,7 @@ public class LoggerAspectAnn {
 		Signature sig = jp.getSignature();
 		log.debug(sig.getName()+ "   "+sig.getDeclaringTypeName());
 		log.debug("=========================================");
+		
 	}
 	
 	@After("demo()")
@@ -83,6 +88,14 @@ public class LoggerAspectAnn {
 		Signature sig = join.getSignature();
 		log.debug(sig.getName() + " : " + sw.getTotalTimeMillis()+"ms");
 		log.debug("===== 측정완료 =====");
+		
+		
+		//일반 클래스에서 session 가져오기
+		HttpSession session = (HttpSession)RequestContextHolder.currentRequestAttributes().resolveReference(RequestAttributes.REFERENCE_SESSION);
+		
+		//Admin 검사하고 이럴때 씀
+		//권한 없어서 중지시켜야 될 경우 throw로 Exception 만들어버린다
+		//Exception 처리하고 에러페이지 따로 만들어서 쏴준다
 		
 		return obj;
 		
