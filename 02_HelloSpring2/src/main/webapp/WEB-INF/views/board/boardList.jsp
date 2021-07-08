@@ -26,18 +26,16 @@
 		                <td><c:out value="${l.boardTitle}"/></td>
 		                <td><c:out value="${l.boardWriter}"/></td>
 		                <td><fmt:formatDate type="date" value="${l.boardDate}"/></td>
-		                <c:choose>
 		                	<td>
-			                	<c:when test="${l.attachments!=null}">
+			                	<c:if test="${l.attachments!=null}">
 				                	<c:forEach var="a" items="${l.attachments}" varStatus="as">
 				                		${a}
-				                		<c:if test="${as not last}">
+				                		<c:if test="${as!=last}">
 				                		, 
 				                		</c:if>
 				                	</c:forEach>
-			                	</c:when>
+			                	</c:if>
 		                	</td>
-						</c:choose>		               
 		                <td><c:out value="${l.boardReadcount}"/></td>
 		            </tr>	
 	            </c:forEach>
