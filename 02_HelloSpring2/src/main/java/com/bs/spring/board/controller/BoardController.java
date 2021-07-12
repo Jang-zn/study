@@ -73,7 +73,7 @@ public class BoardController {
 			}	
 			
 		}
-		int result = bs.boardWrite(b);
+		int result = bs.insertBoard(b);
 		mv.addObject("msg",result>0?"등록성공":"등록실패");
 		mv.addObject("loc","/board/boardList.do");
 		mv.setViewName("common/msg");

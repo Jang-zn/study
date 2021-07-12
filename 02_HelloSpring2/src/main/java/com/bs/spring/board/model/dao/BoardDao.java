@@ -10,7 +10,7 @@ import com.bs.spring.board.model.vo.Board;
 public interface BoardDao {
 	List<Board> boardList(SqlSessionTemplate session, int cPage, int numPerpage);
 	int countBoard(SqlSessionTemplate session);
-	int boardWrite(SqlSessionTemplate session, Board b);
-	int boardWriteAttachment(SqlSessionTemplate session, Attachment a);
+	int insertBoard(SqlSessionTemplate session, Board b);
+	int insertBoardAttachment(SqlSessionTemplate session, Attachment a);
 	Board selectBoard(SqlSessionTemplate session, int no);
 }

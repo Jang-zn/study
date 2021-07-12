@@ -25,12 +25,12 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	//
 	@Override
-	public int boardWrite(SqlSessionTemplate session, Board b) {
+	public int insertBoard(SqlSessionTemplate session, Board b) {
 		return session.insert("board.boardWrite", b);
 	}
 
 	@Override
-	public int boardWriteAttachment(SqlSessionTemplate session, Attachment a) {
+	public int insertBoardAttachment(SqlSessionTemplate session, Attachment a) {
 		return session.insert("board.boardWriteAttachment", a);
 	}
 

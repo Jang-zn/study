@@ -44,7 +44,7 @@
 	<insert id="boardWriteAttachment">
 		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENTNO.NEXTVAL,#{boardNo}, #{originalFilename}, #{renamedFilename}, default, default, default)
 	</insert>
-	<select id="selectBoard">
+	<select id="selectBoard" resultMap="boardMap">
 		SELECT * FROM BOARD LEFT JOIN ATTACHMENT USING(BOARDNO) WHERE BOARDNO=#{no}
 	</select>
 </mapper>

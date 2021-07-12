@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -41,14 +45,37 @@
 				NEVER : 트랜잭션 사용 안함 / 있으면 취소하고 예외처리함
 			 -->
 			 <!-- 옵션2. isolation - 관리하는 데이터를 어떻게 할거냐는거에 대한 옵션 
-			 	READ_UNCOMMITED : 커밋되지 않은 데이터를 읽어올 수 있게 함
-			 	
+			 	READ_UNCOMMITED : 커밋되지 않은 데이터도 읽어올 수 있게 함
+			 	READ_COMMITED : default - 커밋된거만 읽어올수 있음
+			 	REPEATEABLE_READ : 하나의 트랜잭션이 읽는중(커밋이나 롤백전)인 ROW는 다른 트랜잭션이 수정하는걸 금지함 
+			 					   (INSERT는 됨 UPDATE만 안됨)
+			 	SERIALIZABLE : 트랜잭션별로 순차적으로 적용 / 가장 강력한 격리수준 / 느림
 			 -->
+			 <!-- 옵션3. timeout - 트랜잭션 유지시간-->
+			 <!-- 옵션4. read-only / readOnly
+			 	성능 최적화를 위해서 종종 select에 걸어줌
+			 -->
+			 <!-- 옵션5. rollback-for / rollbackFor : rollback 처리 범위 조정 (Exception 범위 제어)-->
 			 
-	
+	<!-- AOP도 설정해줘야됨 안하면 안돌아감 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- RuntimeException에서 Exception으로 처리범위를 넓혀줌 -->
+			<tx:method name="insert*" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* com.bs.spring..*ServiceImpl.insert*(..))" id="txp"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txp"/>
+	</aop:config>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
 </beans>
+
 
