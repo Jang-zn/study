@@ -25,7 +25,26 @@
 			</bean>
 		</property>
 	</bean>
-	
+	<!-- AOP기술로 transaction 처리 (after throwing) : runtime exception 보고 처리함 -->
+	<!-- transaction 처리를 위한 transaction manager 등록 -->
+	<!-- 트랜잭션 적용한 메소드 위에 @Transactional / @Transactional(option...) -->
+	<!-- xmlnamespace에 tx 를 추가 -->
+	<!-- tx:advice -->
+		<!-- tx:attribute -->
+			<!-- tx:attribute name="" option... -->
+			<!-- 옵션1. propagation 트랜잭션 관리에 대한것 - 트랜잭션 묶는 범위에 대한 옵션 
+				REQUIRED : default 속성 - 시작된 트랜잭션 있으면 참여, 없으면 새로 시작
+				SUPPORT : 이미 시작된 트랜잭션이 있으면 참여 / 없으면 가만있음?(트랜잭션 없이 진행?)
+				MANDATORY : 시작된 트랜잭션이 있으면 참여 / 없으면 예외처리함
+				REQUIRES_NEW : 시작된 트랜잭션이 있으면 보류시키고 얘가 우선적으로 새로운 트랜잭션으로 생성됨 
+				NOT_SUPPORT : 사용안함 / 이미 진행되고 있는건 보류
+				NEVER : 트랜잭션 사용 안함 / 있으면 취소하고 예외처리함
+			 -->
+			 <!-- 옵션2. isolation - 관리하는 데이터를 어떻게 할거냐는거에 대한 옵션 
+			 	READ_UNCOMMITED : 커밋되지 않은 데이터를 읽어올 수 있게 함
+			 	
+			 -->
+			 
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>

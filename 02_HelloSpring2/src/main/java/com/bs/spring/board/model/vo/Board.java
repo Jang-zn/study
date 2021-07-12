@@ -18,5 +18,5 @@ public class Board {
 	private String boardContent;
 	private Date boardDate;
 	private int boardReadcount;
-	private List<Attachment> attachments = new ArrayList();
+	private List<Attachment> attachments;
 }

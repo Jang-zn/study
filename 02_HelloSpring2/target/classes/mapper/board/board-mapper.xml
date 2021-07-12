@@ -32,4 +32,19 @@
 	<delete id="deleteBoard"> 
 		DELETE MEMBER WHERE MEMBERID=#{memberId}
 	</delete>
+	
+	<!-- selectKey 로 트리거처럼 쓸수 있음 -->
+	<insert id="boardWrite">
+		INSERT INT BOARD VALUES(SEQ_BOARDNO, #{boardTitle}, #{boardWriter}, #{boardContent}, default, default)
+		<!-- SELECT KEY의 SQL문을 실행하고 파라미터 객체인 b의 boardNo에다가 다시 넣어줌 -->
+		<selectKey keyProperty="boardNo" resultType="_int" order="AFTER">
+			SELECT SEQ_BOARDNO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	<insert id="boardWriteAttachment">
+		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENTNO.NEXTVAL,#{boardNo}, #{originalFilename}, #{renamedFilename}, default, default, default)
+	</insert>
+	<select id="selectBoard">
+		SELECT * FROM BOARD LEFT JOIN ATTACHMENT USING(BOARDNO) WHERE BOARDNO=#{no}
+	</select>
 </mapper>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.bs.spring.board.model.vo.Attachment;
 import com.bs.spring.board.model.vo.Board;
 
 
@@ -22,5 +23,22 @@ public class BoardDaoImpl implements BoardDao {
 	public int countBoard(SqlSessionTemplate session) {
 		return session.selectOne("board.countBoard");
 	}
+	//
+	@Override
+	public int boardWrite(SqlSessionTemplate session, Board b) {
+		return session.insert("board.boardWrite", b);
+	}
 
+	@Override
+	public int boardWriteAttachment(SqlSessionTemplate session, Attachment a) {
+		return session.insert("board.boardWriteAttachment", a);
+	}
+
+	@Override
+	public Board selectBoard(SqlSessionTemplate session, int no) {
+		return session.selectOne("board.selectBoard",no);
+	}
+	
+	
+	
 }

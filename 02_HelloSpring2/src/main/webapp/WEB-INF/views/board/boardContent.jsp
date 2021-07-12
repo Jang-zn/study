@@ -8,16 +8,21 @@
 </jsp:include>
 <section id="content">
  <div id="board-container">
-        <input type="text" class="form-control" placeholder="Á¦¸ñ" name="boardTitle" id="boardTitle"  required>
-        <input type="text" class="form-control" name="boardWriter"  readonly required>
-
-                    <button type="button" 
-                    class="btn btn-outline-success btn-block"
-                    onclick="">
-            </button>
+        <input type="text" class="form-control" placeholder="Á¦¸ñ" name="boardTitle" id="boardTitle"  required
+        value="${board.boardTitle}">
+        <input type="text" class="form-control" name="boardWriter"  readonly required value="${board.boardWriter}">
+		<c:if test="${not empty board.attachments }" varStatus="vs">
+			<c:forEach var="a" items="${board.attachments}">
+				<span><c:out value="${a.originalFilename}"/></span>
+            	<button type="button" 
+                  class="btn btn-outline-success btn-block"
+                  onclick="">
+                  다운로드.${vs.count}
+            	</button>
+            </c:forEach>
+        </c:if>
         
-        
-        <textarea class="form-control" name="boardContent" placeholder="³»¿ë" required></textarea>
+        <textarea class="form-control" name="boardContent" placeholder="³»¿ë" required><c:out value="${board.boardContent}"/></textarea>
     </div>
 
      <style>

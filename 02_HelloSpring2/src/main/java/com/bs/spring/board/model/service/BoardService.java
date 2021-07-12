@@ -7,5 +7,6 @@ import com.bs.spring.board.model.vo.Board;
 public interface BoardService {
 	List<Board> boardList(int cPage, int numPerpage);
 	int countBoard();
-	
+	int boardWrite(Board b);
+	Board selectBoard(int no);
 }

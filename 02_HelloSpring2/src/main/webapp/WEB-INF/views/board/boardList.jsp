@@ -7,6 +7,11 @@
 	<jsp:param name="title" value="Hello Srping"/>
 </jsp:include>
 <section id="board-container" class="container">
+		<button id-"btn-add" class="btn btn-outline-success" onclick="location.assign('${path}/board/boardForm.do');">
+			글쓰기
+		</button>
+
+
         <p>총 ${totalContents }건의 게시물이 있습니다.</p>
         
         <table id="tbl-board" class="table table-striped table-hover">
@@ -22,8 +27,8 @@
             <c:when test="${list!=null}">
 	            <c:forEach var="l" items="${list}">
 		            <tr>
-		                <td><c:out value="${l.boardNo}"/></td>
-		                <td><c:out value="${l.boardTitle}"/></td>
+		                <td class="boardNo"><c:out value="${l.boardNo}"/></td>
+		                <td class="title"><c:out value="${l.boardTitle}"/></td>
 		                <td><c:out value="${l.boardWriter}"/></td>
 		                <td><fmt:formatDate type="date" value="${l.boardDate}"/></td>
 		                	<td>
@@ -51,4 +56,15 @@
         	${pageBar}
         </div>
 </section>
+<style>
+	.title{
+		cursor:pointer;
+	}
+</style>
+<script>
+	$(".title").click(e=>{
+		let no = $(e.target).siblings(".boardNo").text();
+		location.assign("${path}/board/boardView.do?no="+no);
+	});
+</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
