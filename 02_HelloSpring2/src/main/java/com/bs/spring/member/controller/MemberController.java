@@ -2,6 +2,7 @@ package com.bs.spring.member.controller;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.bs.spring.board.model.service.BoardService;
+import com.bs.spring.board.model.vo.Board;
 import com.bs.spring.member.model.service.MemberService;
 import com.bs.spring.member.model.vo.Member;
 import com.google.gson.Gson;
@@ -31,6 +35,9 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	
+	@Autowired
+	private BoardService bs;
 	
 	//private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -129,5 +136,11 @@ public class MemberController {
 	public boolean checkResponseBody(@RequestParam Map param) {
 		Member m = ms.loginMember(param);
 		return m!=null;
+	}
+	
+	@RequestMapping("board/ajaxVoardList.do")
+	@ResponseBody
+	public List<Board> selectAjaxList(){
+		return bs.boardList(1,10);
 	}
 }

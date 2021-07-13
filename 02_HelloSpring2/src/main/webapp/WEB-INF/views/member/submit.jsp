@@ -21,6 +21,8 @@
 				<input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="userId" id="userId_" required>
 				<span class="guide ok">사용가능</span>
 				<span class="guide error" >사용불가</span>
+				<button onclick="fn_rBody();">responseBody</button>
+				<button onclick="fn_boardList();">boardList</button>
 				</div>
 				<input type="password" class="form-control" placeholder="비밀번호" name="password" id="password_" required>
 				<input type="password" class="form-control" placeholder="비밀번호확인" id="password2" required>
@@ -70,5 +72,16 @@
 			}
 		})
 	})
+	
+	const function fn_rBody(){
+		let userId=$("#userId_").val();
+		
+	}
+	
+	function fn_boardList(){
+		$.get("${path}/board/ajaxBoardList.do",data=>{
+			console.log(data);
+		});
+	}
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
