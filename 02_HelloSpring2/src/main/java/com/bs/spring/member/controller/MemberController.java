@@ -119,4 +119,15 @@ public class MemberController {
 	
 	
 	
+	
+	//@ReseponseBody를 이용해서 ajax 요청
+	//응답하는데이터를 json으로 전송
+	//반환하는 데이터는 parsing 필요 / 메소드 반환형은 따로 안정해져있음
+	//(jackson library의 converter 객체로 처리) / 파라미터만 받으면 된다.
+	
+	@RequestMapping("/member/checkResponsebody.do")
+	public boolean checkResponseBody(@RequestParam Map param) {
+		Member m = ms.loginMember(param);
+		return m!=null;
+	}
 }

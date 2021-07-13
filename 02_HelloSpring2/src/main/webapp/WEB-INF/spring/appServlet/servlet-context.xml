@@ -45,4 +45,15 @@
 	</interceptors>
 	
 	
+	<!-- Ajax : jackson Binder 등록 -->
+	<!-- MappingJackson2HttpMessageConverter를 bean 등록-->
+	<beans:bean id="jacksonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters"><!-- 반환값을 뭐로 변환시켜줄지를 등록 -->
+			<beans:list>
+				<beans:ref bean="jacksonConverter"/><!-- 등록해놓은 jacksonConverter bean을 이용하려고 함-->
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
 </beans:beans>
