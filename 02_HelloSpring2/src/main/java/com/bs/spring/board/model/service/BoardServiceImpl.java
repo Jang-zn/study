@@ -30,10 +30,11 @@ public class BoardServiceImpl implements BoardService {
 		return dao.countBoard(session);
 	}
 
+	
+	//@Transactional
 	@Override
-	@Transactional
-	public int insertBoard(Board b)  throws SQLException{
-	try{
+	public int insertBoard(Board b) {
+	
 		int result = dao.insertBoard(session, b);
 		if(result>0) {
 			if(b.getAttachments().size()>0) {
@@ -49,13 +50,10 @@ public class BoardServiceImpl implements BoardService {
 		}else {
 			return 0;
 		}
-		return result;
-	}catch(SQLException e) {
-		throw new Exception("SQLException");
+	
+	return result;
 	}
-			
-	}
-
+	
 	@Override
 	public Board selectBoard(int no) {
 		return dao.selectBoard(session, no);

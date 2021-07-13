@@ -1,11 +1,11 @@
 package com.bs.spring.member.controller;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.bs.spring.member.model.service.MemberService;
 import com.bs.spring.member.model.vo.Member;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -101,5 +102,21 @@ public class MemberController {
 		return "common/msg";
 		//권한인증 / 암호화 해야되는데 이거를 SpringSecurity로 구현 가능
 	}
+	
+	//response에서 writer 꺼내고 뭐 그럴필요 없음 이제
+	//writer는 문자열만 보낼 수 있다. 객체는? -> Library 이용(Gson / Jackson?? 얘는 인코딩도 해줌)
+	@RequestMapping("/member/checkUserId.do") 
+	public void checkUserId(@RequestParam Map param, Writer write) throws IOException{
+		Member m = ms.loginMember(param);
+		//write.append(m==null?"true":"false");
+		new Gson().toJson(m==null?true:false,write);
+	}
+	
+	//jsonView를 이용해서 ajax응답
+	//리졸버를 통해서 자동으로 JsonSimple방식으로 변환해서 응답 -> 단일문자열?을 put으로 넣는방식???
+	// ModelAndView로 반환함 (사실 잘 안씀)
+	//시팔 날라가서 못해봄 영상봐라..
+	
+	
 	
 }

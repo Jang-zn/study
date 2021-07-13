@@ -28,7 +28,7 @@ public class LoggerInterceptor implements HandlerInterceptor{
 		
 		//리턴값 없고 modelAndView에 request data / view data 담겨있어서 check 가능
 		log.debug("interceptor : postHandler");
-		log.debug("전환될 화면 : {}", modelAndView.getViewName());
+		//log.debug("전환될 화면 : {}", modelAndView.getViewName());
 		// TODO Auto-generated method stub
 		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}
