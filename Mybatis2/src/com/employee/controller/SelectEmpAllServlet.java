@@ -31,7 +31,66 @@ public class SelectEmpAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		List<Employee> list = new EmployeeService().selectEmpAll();
+=======
+		int cPage;
+		int numPerpage=5;
+		
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		}catch(Exception e) {
+			cPage=1;
+		}
+		
+		int totalData = new EmployeeService().selectEmpCount();
+		int totalPage = (int)Math.ceil((double)totalData/numPerpage);
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		//bootstrap 구현된 class / 함수로 pageBar 작성
+		String pageBar="<ul class='pagination justify-content-center pagination-sm'>";
+		if(pageNo==1) {
+			pageBar+="<li class='page-item disabled'>";
+			pageBar+="<a class='page-link' href='#' tabindex='-1'>이전</a>";
+			pageBar+="</li>";
+		}else {
+			pageBar+="<li class='page-item'>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo-1)+")'>이전</a>";
+			pageBar+="</li>";
+		}
+		while(!(pageNo>pageEnd || pageNo>totalPage)) {
+			if(cPage==pageNo) {
+				pageBar+="<li class='page-item active'>";
+				pageBar+="<a class='page-link'>"+pageNo+"</a>";
+				pageBar+="</li>";
+			}else {
+				pageBar+="<li class='page-item'>";
+				pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo)+")'>"+pageNo+"</a>";
+				pageBar+="</li>";
+			}
+			pageNo++;
+		}
+		if(pageNo>totalPage) {
+			pageBar+="<li class='page-item disabled'>";
+			pageBar+="<a class='page-link' href='#' tabindex='-1'>다음</a>";
+			pageBar+="</li>";
+		}else {
+			pageBar+="<li class='page-item'>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo)+")'>다음</a>";
+			pageBar+="</li>";
+		}
+		pageBar+="</ul>";
+		pageBar+=("<script>"
+				+ "function fn_paging(cPage){"
+				+ "location.assign('"+request.getRequestURI()+"?cPage='+cPage);"
+				+ "}"
+				+ "</script>");
+		request.setAttribute("pageBar", pageBar);
+		
+		
+		List<Employee> list = new EmployeeService().selectEmpAll(cPage, numPerpage);
+>>>>>>> branch 'master' of https://github.com/Jang-zn/study.git
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/empList.jsp").forward(request, response);
 	}

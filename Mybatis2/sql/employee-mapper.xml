@@ -16,9 +16,97 @@
 		<result property="hireDate" column="HIRE_DATE"></result>
 		<result property="entDate" column="ENT_DATE"></result>
 		<result property="entYn" column="ENT_YN"></result>
+<<<<<<< HEAD
 	</resultMap>
 	<select id="selectEmpAll" resultMap="employeeRS">
 		SELECT * FROM EMPLOYEE
 	</select>
   
+=======
+		<result property="gender" column="GENDER"></result>
+	</resultMap>
+	
+	<resultMap type="com.employee.model.vo.Employee2" id="emp2RS">
+		<id column = "EMP_ID" property="empId"/>
+		<result column="EMP_NAME" property="empName"/>
+		<result column="EMP_NO" property="empNo"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SALARY" property="salary"/>
+		<result column="BONUS" property="bonus"/>
+		<association property="dept" javaType="com.employee.model.vo.Department">
+			<id column="DEPT_ID" property="deptId"/>
+			<result column="DEPT_TITLE" property="deptTitle"/>
+			<result column="LOCATION_ID" property="locationId"/>
+		</association> 
+		
+	</resultMap>
+	<resultMap type="com.employee.model.vo.Board" id="boardRS">
+		<id column="board_no" property="boardNo"/>
+		<result column="board_title" property="boardTitle"/>
+		<result column="board_Wirter" property="boardWriter"/>
+		<result column="board_content" property="boardContent"/>
+		<result column="board_date" property="boardDate"/>
+		<collection  resultMap="boardCommentRS" property="comments">
+			
+		</collection>
+	</resultMap>
+	<resultMap type="com.employee.model.vo.BoardComment" id="boardCommentRS">
+		<id column="board_comment_no" property="commentNo"/>
+		<result column="board_comment_writer" property="commentWriter"/>
+		<result column="board_comment_content" property="commentContent"/>
+		<result column="board_comment_date" property="commentDate"/>
+	
+	</resultMap>
+	<select id="selectBoard" resultMap="boardRS">
+		SELECT * FROM BOARD JOIN BOARD_COMMENT ON BOARD_NO=BOARD_REF
+		WHERE BOARD_NO=#{no}
+	</select>
+	<select id="selectEmpAll" resultMap="employeeRS" >
+		SELECT * 
+		FROM (SELECT E.*, DECODE(SUBSTR(EMP_NO, 8, 1),'1','M','3','M','2','F','4','F') AS GENDER FROM EMPLOYEE E)
+	</select>
+	<select id="selectEmpCount" resultType="int">
+		SELECT COUNT(*) FROM EMPLOYEE
+	</select>
+	<!-- #은 setString / setInt개념 $는 값에 상관없이 Literal 표기함 (''안찍고 그냥 써줌 기존 sql불러와서 replace 해주는 개념) -->
+	<!-- 제대로 구분 안하면 에러날수 있으니까 주의 -->
+	<select id="selectEmp" resultMap="employeeRS" >
+		SELECT * 
+		FROM (SELECT E.*, DECODE(SUBSTR(EMP_NO, 8, 1),'1','M','3','M','2','F','4','F') AS GENDER FROM EMPLOYEE E)
+		<!-- 조건에는 키값 그냥 주면 알아서 처리해줌 -->
+		<!-- trim /where 태그 쓰면 and / or 지우기 쌉가능 -->
+		<where>
+		<!-- <trim prefix="WHERE" prefixOverrides="AND|OR"> -->
+			<if test="type!=null and type!=''">
+				${type} LIKE '%'||#{key}||'%'
+			</if>
+			<if test="gender!=null">
+				AND GENDER = #{gender}
+			</if>
+			<!-- escape문 사용 <!CDATA["escape 할 문구"]]> -->
+			<!-- &lt; &gt; 써도 됨-->
+			<if test="salary!=null and salary!='' and lege!=null and lege!=''">
+				AND SALARY ${lege} ${salary}
+			</if>
+			<if test="hireDate!=null and hireDate!='' and dlege!=null and dlege!=''">
+				AND HIRE_DATE ${dlege} TO_DATE(#{hireDate},'YY/MM/DD')
+			</if>
+			<if test="jobCode!='' and jobCode!=null">
+				<!-- forEach collection="(items 개념)" item="(이게 변수)" index="인덱스번호" open="시작할때 넣을값" close="끝날때 넣을값" separator="구분자"-->
+				<!-- forEach collection="jobCode" item="j" open="(" close=")" separator="," 하고 태그 안에서 #{j} 찍어줌-->
+				AND JOB_CODE IN(${jobCode})
+			</if>
+			<!-- choose - when - otherwise 써도 됨 -->
+		<!-- </trim> -->
+		</where>
+	</select>
+  	<!-- 너무 한개 쿼리에서 조건 여러개 걸고 selec까지 손대거나 뭐 그러면 헷갈리니까 적당히 나눠줄 필요도 있음 -->
+  	<select id="selectOneEmp" resultMap="emp2RS">
+  		SELECT * 
+  		FROM EMPLOYEE 
+  			JOIN DEPARTMENT ON DEPT_CODE=DEPT_ID
+  		WHERE EMP_ID=#{no}
+  	</select>
+>>>>>>> branch 'master' of https://github.com/Jang-zn/study.git
 </mapper>

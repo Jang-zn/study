@@ -36,5 +36,9 @@ public class Employee {
 	private Date hireDate;
 	private Date entDate;
 	private String entYn;
+<<<<<<< HEAD
+=======
+	private String gender;
+>>>>>>> branch 'master' of https://github.com/Jang-zn/study.git
 		
 }

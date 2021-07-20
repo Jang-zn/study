@@ -17,6 +17,15 @@
 		<li><h3>전체조회</h3>
 			<a href="${path}/selectEmpAll">조회</a>
 		</li>
+<<<<<<< HEAD
+=======
+		<li><h3>사원 조회</h3>
+			<a href="${path}/selectOneEmp?no=200">조회</a>
+		</li>
+		<li><h3>사원 조회</h3>
+			<a href="${path}/selectBoard?no=39">조회</a>
+		</li>
+>>>>>>> branch 'master' of https://github.com/Jang-zn/study.git
 	</ul>
 </body>
 </html>
