@@ -60,6 +60,41 @@ section>div>h1
     background-color: #4e85dd;
 }
 
+.notice-title{
+    display:flex;
+    border-bottom:#c8c8c8 solid 1px;
+    
+}
+.notice-title>h1{
+    width:70%;
+    font-size:30px;
+    margin:0%;
+    margin-top:3%;
+}
+.notice-title>h3{
+    width:15%;
+    font-size:15px;
+    text-align: end;
+    margin:0%;
+    margin-top:5%;
+    margin-bottom:0.3%;
+}
+.notice-content{
+    border-bottom:#c8c8c8 solid 1px;
+}
+.list-btn{
+    margin:2%;
+    margin-left:88%;
+    width:10%;
+    background-color: #4e85dd;
+    border-radius: 10px;
+    color:white;
+    font-size: 20px;
+    text-align: center;
+    padding:1% 0% 1% 0%;
+    cursor:pointer;
+    
+}
 
 
 
